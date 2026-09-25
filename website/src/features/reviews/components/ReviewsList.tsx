@@ -19,7 +19,7 @@ export function ProductRatingSummary({ productId }: { productId: string }) {
   return (
     <a
       href="#reviews"
-      className="flex items-center gap-2 text-[12px] text-[#605a54]"
+      className="flex items-center gap-2 text-[calc(12px*var(--fs-scale))] text-[#605a54]"
     >
       <StarRating value={average} size="sm" />
       <span>
@@ -73,10 +73,10 @@ export function ReviewsList({ productId }: { productId: string }) {
       className="flex flex-col gap-10 bg-[#f4f0eb] px-4 py-16 sm:px-6 md:px-10 lg:px-20 lg:py-[100px]"
     >
       <div className="flex flex-col gap-3">
-        <h2 className="font-[family-name:var(--font-instrument-serif)] text-[36px] text-[#1a1a1a] sm:text-[48px]">
+        <h2 className="font-[family-name:var(--font-instrument-serif)] text-[calc(36px*var(--fs-scale))] text-[#1a1a1a] sm:text-[calc(48px*var(--fs-scale))]">
           Reviews
         </h2>
-        <p className="font-[family-name:var(--font-manrope)] text-[13px] uppercase text-[#605a54]">
+        <p className="font-[family-name:var(--font-manrope)] text-[calc(13px*var(--fs-scale))] uppercase text-[#605a54]">
           The experience of the signature scent
         </p>
       </div>
@@ -87,12 +87,12 @@ export function ReviewsList({ productId }: { productId: string }) {
         <div className="grid gap-12 lg:grid-cols-[minmax(240px,0.7fr)_minmax(0,1.3fr)]">
           <div className="flex flex-col gap-6">
             <div className="flex items-end gap-4">
-              <span className="font-[family-name:var(--font-instrument-serif)] text-[64px] leading-none text-[#1a1a1a]">
+              <span className="font-[family-name:var(--font-instrument-serif)] text-[calc(64px*var(--fs-scale))] leading-none text-[#1a1a1a]">
                 {average ? average.toFixed(1) : "0.0"}
               </span>
               <div className="pb-1">
                 <StarRating value={average} size="md" />
-                <p className="mt-1 text-[12px] text-[#605a54]">
+                <p className="mt-1 text-[calc(12px*var(--fs-scale))] text-[#605a54]">
                   Based on {reviews.length}{" "}
                   {reviews.length === 1 ? "review" : "reviews"}
                 </p>
@@ -100,7 +100,7 @@ export function ReviewsList({ productId }: { productId: string }) {
             </div>
             <div className="flex flex-col gap-2">
               {breakdown.map(({ stars, count }) => (
-                <div key={stars} className="flex items-center gap-3 text-[12px]">
+                <div key={stars} className="flex items-center gap-3 text-[calc(12px*var(--fs-scale))]">
                   <span className="w-8 text-[#605a54]">{stars} star</span>
                   <div className="h-1.5 flex-1 rounded-full bg-[#ebe6de]">
                     <div
@@ -124,7 +124,7 @@ export function ReviewsList({ productId }: { productId: string }) {
                 <ReviewCard key={review.id} review={review} />
               ))
             ) : (
-              <p className="py-5 text-[14px] text-[#605a54]">
+              <p className="py-5 text-[calc(14px*var(--fs-scale))] text-[#605a54]">
                 Be the first to share your experience.
               </p>
             )}
@@ -136,7 +136,7 @@ export function ReviewsList({ productId }: { productId: string }) {
         onSubmit={submitReview}
         className="flex max-w-2xl flex-col gap-4 border-t border-[#ebe6de] pt-8"
       >
-        <h3 className="font-[family-name:var(--font-instrument-serif)] text-[30px] text-[#1a1a1a]">
+        <h3 className="font-[family-name:var(--font-instrument-serif)] text-[calc(30px*var(--fs-scale))] text-[#1a1a1a]">
           Share your experience
         </h3>
         <input
@@ -144,7 +144,7 @@ export function ReviewsList({ productId }: { productId: string }) {
           onChange={(event) => setName(event.target.value)}
           placeholder="Your name"
           aria-label="Your name"
-          className="rounded border border-[#ebe6de] bg-white px-4 py-3 text-[14px] text-[#1a1a1a] outline-none focus:border-[#1a1a1a]"
+          className="rounded border border-[#ebe6de] bg-white px-4 py-3 text-[calc(14px*var(--fs-scale))] text-[#1a1a1a] outline-none focus:border-[#1a1a1a]"
         />
         <StarRating value={rating} onChange={setRating} size="lg" />
         <textarea
@@ -153,11 +153,11 @@ export function ReviewsList({ productId }: { productId: string }) {
           placeholder="Tell us about the scent..."
           aria-label="Your review"
           rows={4}
-          className="resize-none rounded border border-[#ebe6de] bg-white px-4 py-3 text-[14px] text-[#1a1a1a] outline-none focus:border-[#1a1a1a]"
+          className="resize-none rounded border border-[#ebe6de] bg-white px-4 py-3 text-[calc(14px*var(--fs-scale))] text-[#1a1a1a] outline-none focus:border-[#1a1a1a]"
         />
         <button
           type="submit"
-          className="self-start rounded bg-[#1a1a1a] px-6 py-3 font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.1em] text-[#faf8f5] uppercase"
+          className="self-start rounded bg-[#1a1a1a] px-6 py-3 font-[family-name:var(--font-manrope)] text-[calc(12px*var(--fs-scale))] font-bold tracking-[0.1em] text-[#faf8f5] uppercase"
         >
           Submit Review
         </button>

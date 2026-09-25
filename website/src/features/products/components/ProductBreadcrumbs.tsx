@@ -14,7 +14,7 @@ export function ProductBreadcrumbs() {
       <span className="flex items-center gap-2">
         <Link
           href={productPaths.list}
-          className="text-[12px] font-normal whitespace-nowrap text-[#605a54]"
+          className="text-[calc(12px*var(--fs-scale))] font-normal whitespace-nowrap text-[#605a54]"
         >
           {t("breadcrumb.home")}
         </Link>
@@ -23,13 +23,13 @@ export function ProductBreadcrumbs() {
       <span className="flex items-center gap-2">
         <Link
           href={productPaths.list}
-          className="text-[12px] font-normal whitespace-nowrap text-[#605a54]"
+          className="text-[calc(12px*var(--fs-scale))] font-normal whitespace-nowrap text-[#605a54]"
         >
           {t("breadcrumb.shop")}
         </Link>
         <img src="/icons/chevron-right.svg" alt="" width={10} height={10} />
       </span>
-      <span className="text-[12px] font-semibold whitespace-nowrap text-[#1a1a1a]">
+      <span className="text-[calc(12px*var(--fs-scale))] font-semibold whitespace-nowrap text-[#1a1a1a]">
         {t("title")}
       </span>
     </nav>

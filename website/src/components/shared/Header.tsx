@@ -23,7 +23,7 @@ const NAV_LINKS = [
 ] as const;
 
 const searchFieldClassName =
-  "w-full bg-transparent text-[12px] leading-[normal] text-[#1a1a1a] outline-none placeholder:text-[#605a54]";
+  "w-full bg-transparent text-[calc(14px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] outline-none placeholder:text-[#605a54]";
 
 function SearchForm({
   className,
@@ -79,7 +79,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-[#faf8f5]">
       <div className="bg-[#1a1a1a] px-4 py-2.5 text-center lg:py-3">
-        <p className="text-[9px] leading-[normal] font-normal text-white uppercase lg:text-[11px] lg:font-semibold">
+        <p className="text-[calc(10.5px*var(--fs-scale))] leading-[normal] font-normal text-white uppercase lg:text-[calc(13px*var(--fs-scale))] lg:font-semibold">
           <span
             dir="ltr"
             className="lg:hidden [direction:ltr] [unicode-bidi:isolate]"
@@ -95,13 +95,13 @@ export function Header() {
         </p>
       </div>
       <div className="relative border-b border-[#ebe6de]">
-        <div className="grid h-[68px] grid-cols-[1fr_auto_1fr] items-center px-5 lg:h-[90px] lg:px-20">
-          <nav className="hidden items-center gap-10 justify-self-start lg:flex">
+        <div className="grid h-[68px] grid-cols-[1fr_auto_1fr] items-center gap-x-2 px-4 sm:px-5 xl:h-[90px] xl:gap-x-0 xl:px-10 2xl:px-20">
+          <nav className="hidden items-center gap-6 justify-self-start xl:flex 2xl:gap-10">
             {NAV_LINKS.map((link) => (
               <LocaleLink
                 key={link.label}
                 href={link.href}
-                className="text-[13px] leading-[normal] font-medium text-[#605a54] uppercase"
+                className="text-[calc(15px*var(--fs-scale))] leading-[normal] font-medium text-[#605a54] uppercase"
               >
                 {t(link.label)}
               </LocaleLink>
@@ -109,7 +109,7 @@ export function Header() {
           </nav>
           <button
             type="button"
-            className="justify-self-start lg:hidden"
+            className="justify-self-start xl:hidden"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((open) => !open)}
@@ -119,14 +119,14 @@ export function Header() {
           <LocaleLink
             href="/"
             dir="ltr"
-            className="font-[family-name:var(--font-instrument-serif)] text-[25px] leading-[normal] text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate] lg:text-[38px] lg:tracking-[0.18em] lg:-mr-[0.18em]"
+            className="font-[family-name:var(--font-instrument-serif)] text-[calc(18px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate] min-[360px]:text-[calc(22px*var(--fs-scale))] sm:text-[calc(25px*var(--fs-scale))] xl:text-[calc(30px*var(--fs-scale))] xl:tracking-[0.18em] xl:-mr-[0.18em] 2xl:text-[calc(38px*var(--fs-scale))]"
           >
             ODORATUS
           </LocaleLink>
-          <div className="flex items-center justify-self-end gap-7">
+          <div className="flex items-center justify-self-end gap-3 sm:gap-7 xl:gap-5 2xl:gap-7 min-w-max [&>*]:shrink-0">
             <Suspense
               fallback={
-                <div className="hidden w-[200px] items-center gap-2 rounded-full border border-[#ebe6de] px-3 py-2 lg:flex">
+                <div className="hidden w-[224px] items-center gap-2 rounded-full border border-[#ebe6de] px-3 py-2 xl:flex">
                   <img src="/icons/search.svg" alt="" width={14} height={14} />
                   <input
                     name="search"
@@ -138,7 +138,7 @@ export function Header() {
                 </div>
               }
             >
-              <SearchForm className="hidden w-[200px] items-center gap-2 rounded-full border border-[#ebe6de] px-3 py-2 lg:flex" />
+              <SearchForm className="hidden w-[224px] items-center gap-2 rounded-full border border-[#ebe6de] px-3 py-2 xl:flex" />
             </Suspense>
             <WishlistNavLink />
             <CartNavLink />
@@ -146,7 +146,7 @@ export function Header() {
           </div>
         </div>
         {menuOpen ? (
-          <nav className="absolute inset-x-0 top-full z-20 flex flex-col gap-4 border-b border-[#ebe6de] bg-[#faf8f5] px-5 py-5 lg:hidden">
+          <nav className="absolute inset-x-0 top-full z-20 flex flex-col gap-4 border-b border-[#ebe6de] bg-[#faf8f5] px-5 py-5 xl:hidden">
             <Suspense>
               <SearchForm
                 className="flex w-full items-center gap-2 rounded-full border border-[#ebe6de] bg-white px-3 py-2"
@@ -157,7 +157,7 @@ export function Header() {
               <LocaleLink
                 key={link.label}
                 href={link.href}
-                className="text-[13px] leading-[normal] font-medium text-[#605a54] uppercase"
+                className="text-[calc(15px*var(--fs-scale))] leading-[normal] font-medium text-[#605a54] uppercase"
                 onClick={() => setMenuOpen(false)}
               >
                 {t(link.label)}

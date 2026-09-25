@@ -52,25 +52,25 @@ export function RemoveCartItemDialog({
         <div className="flex flex-col gap-2">
           <h2
             id="remove-cart-item-title"
-            className="font-[family-name:var(--font-instrument-serif)] text-[32px] leading-[normal]"
+            className="font-[family-name:var(--font-instrument-serif)] text-[calc(32px*var(--fs-scale))] leading-[normal]"
           >
             Remove this fragrance?
           </h2>
-          <p className="text-[14px] leading-[1.5] font-normal text-[#605a54]">
+          <p className="text-[calc(14px*var(--fs-scale))] leading-[1.5] font-normal text-[#605a54]">
             {line.name} will be removed from your cart.
           </p>
         </div>
         <div className="flex gap-3">
           <button
             type="button"
-            className="flex-1 cursor-pointer rounded border border-[#ebe6de] bg-white py-3 text-[12px] leading-[normal] font-semibold tracking-wide text-[#1a1a1a] uppercase"
+            className="flex-1 cursor-pointer rounded border border-[#ebe6de] bg-white py-3 text-[calc(12px*var(--fs-scale))] leading-[normal] font-semibold tracking-wide text-[#1a1a1a] uppercase"
             onClick={() => closeThen(onCancel)}
           >
             Keep
           </button>
           <button
             type="button"
-            className="flex-1 cursor-pointer rounded bg-[#1a1a1a] py-3 text-[12px] leading-[normal] font-semibold tracking-wide text-white uppercase"
+            className="flex-1 cursor-pointer rounded bg-[#1a1a1a] py-3 text-[calc(12px*var(--fs-scale))] leading-[normal] font-semibold tracking-wide text-white uppercase"
             onClick={() => closeThen(onConfirm)}
           >
             Remove

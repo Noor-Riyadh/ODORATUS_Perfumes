@@ -57,13 +57,13 @@ export function CategoriesPage() {
     <main className="bg-[#faf8f5] px-4 py-16 text-[#1a1a1a] sm:px-6 md:px-10 lg:px-20 lg:py-[100px]">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-12">
         <header className="flex max-w-3xl flex-col gap-4">
-          <p className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.12em] text-[#c5a880] uppercase">
+          <p className="font-[family-name:var(--font-manrope)] text-[calc(12px*var(--fs-scale))] font-bold tracking-[0.12em] text-[#c5a880] uppercase">
             {t("eyebrow")}
           </p>
-          <h1 className="font-[family-name:var(--font-instrument-serif)] text-[52px] leading-[0.95] text-[#1a1a1a] sm:text-[76px]">
+          <h1 className="font-[family-name:var(--font-instrument-serif)] text-[calc(52px*var(--fs-scale))] leading-[0.95] text-[#1a1a1a] sm:text-[calc(76px*var(--fs-scale))]">
             {t("title")}
           </h1>
-          <p className="font-[family-name:var(--font-manrope)] text-[15px] leading-[1.7] text-[#605a54]">
+          <p className="font-[family-name:var(--font-manrope)] text-[calc(15px*var(--fs-scale))] leading-[1.7] text-[#605a54]">
             {t("intro")}
           </p>
         </header>
@@ -101,22 +101,22 @@ export function CategoriesPage() {
                 </div>
                 <div className="flex items-end justify-between gap-4 px-1 pt-5">
                   <div className="flex flex-col gap-1">
-                    <h2 className="font-[family-name:var(--font-instrument-serif)] text-[28px] text-[#1a1a1a]">
+                    <h2 className="font-[family-name:var(--font-instrument-serif)] text-[calc(28px*var(--fs-scale))] text-[#1a1a1a]">
                       {t(
                         `items.${categoryTranslationKeys[category.slug as keyof typeof categoryTranslationKeys]}.label`,
                       )}
                     </h2>
-                    <p className="font-[family-name:var(--font-manrope)] text-[13px] leading-[1.5] text-[#605a54]">
+                    <p className="font-[family-name:var(--font-manrope)] text-[calc(13px*var(--fs-scale))] leading-[1.5] text-[#605a54]">
                       {t(
                         `items.${categoryTranslationKeys[category.slug as keyof typeof categoryTranslationKeys]}.description`,
                       )}
                     </p>
-                    <p className="font-[family-name:var(--font-manrope)] text-[11px] font-semibold tracking-[0.08em] text-[#605a54] uppercase">
+                    <p className="font-[family-name:var(--font-manrope)] text-[calc(11px*var(--fs-scale))] font-semibold tracking-[0.08em] text-[#605a54] uppercase">
                       {category.productCount}{" "}
                       {t("count", { count: category.productCount })}
                     </p>
                   </div>
-                  <span className="text-[22px] text-[#c5a880] transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="text-[calc(22px*var(--fs-scale))] text-[#c5a880] transition-transform duration-300 group-hover:translate-x-1">
                     →
                   </span>
                 </div>

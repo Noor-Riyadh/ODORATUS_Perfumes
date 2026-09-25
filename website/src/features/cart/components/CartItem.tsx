@@ -40,20 +40,20 @@ export function CartItem({
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-2 lg:gap-3">
         <div className="flex items-start justify-between gap-3 text-[#1a1a1a]">
-          <h2 className="min-w-0 font-[family-name:var(--font-instrument-serif)] text-[23px] leading-[normal] lg:text-[27px]">
+          <h2 className="min-w-0 font-[family-name:var(--font-instrument-serif)] text-[calc(23px*var(--fs-scale))] leading-[normal] lg:text-[calc(27px*var(--fs-scale))]">
             {line.name}
           </h2>
-          <p className="shrink-0 text-[15px] leading-[normal] font-semibold">
+          <p className="shrink-0 text-[calc(15px*var(--fs-scale))] leading-[normal] font-semibold">
             {formatCartAmount(line.price * line.quantity)}
           </p>
         </div>
         {optionLabel ? (
-          <p className="text-[12px] leading-[normal] font-normal uppercase text-[#c5a880]">
+          <p className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-normal uppercase text-[#c5a880]">
             {optionLabel}
           </p>
         ) : null}
         <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center rounded border border-[#ebe6de] text-[12px] leading-[normal]">
+          <div className="flex items-center rounded border border-[#ebe6de] text-[calc(12px*var(--fs-scale))] leading-[normal]">
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center font-normal text-[#605a54] disabled:cursor-default disabled:opacity-40"
@@ -77,7 +77,7 @@ export function CartItem({
           </div>
           <button
             type="button"
-            className="cursor-pointer text-[11px] leading-[normal] font-normal text-[#605a54] uppercase underline"
+            className="cursor-pointer text-[calc(11px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54] uppercase underline"
             onClick={() => onRemove(line.id)}
           >
             {t("item.remove")}

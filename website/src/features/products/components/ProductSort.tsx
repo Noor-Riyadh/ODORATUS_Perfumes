@@ -27,18 +27,18 @@ export function ProductSortControl({
   const { sort, setSort } = useProductSort(query);
   return (
     <div className="flex w-full flex-col gap-3 border-b border-solid border-[#ebe6de] pb-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-      <p className="text-[12px] font-normal uppercase text-[#605a54]">
+      <p className="text-[calc(12px*var(--fs-scale))] font-normal uppercase text-[#605a54]">
         {t("availableCount", { count: availableCount })}
       </p>
       <label className="relative flex shrink-0 items-center gap-2">
-        <span className="text-[12px] font-semibold whitespace-nowrap text-[#1a1a1a]">
+        <span className="text-[calc(12px*var(--fs-scale))] font-semibold whitespace-nowrap text-[#1a1a1a]">
           {t("sort.label")}
         </span>
         <select
           aria-label="Sort products"
           value={sort}
           onChange={(event) => setSort(event.target.value as ProductSort)}
-          className="cursor-pointer appearance-none bg-transparent pr-5 text-[12px] font-semibold whitespace-nowrap text-[#c5a880] outline-none"
+          className="cursor-pointer appearance-none bg-transparent pr-5 text-[calc(12px*var(--fs-scale))] font-semibold whitespace-nowrap text-[#c5a880] outline-none"
         >
           {SORT_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>

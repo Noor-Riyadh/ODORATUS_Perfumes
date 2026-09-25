@@ -17,12 +17,12 @@ export function AccordionItem({ item }: { item: FaqItem }) {
         className="flex w-full items-center justify-between gap-6 py-6 text-left"
         onClick={() => setIsOpen((open) => !open)}
       >
-        <span className="font-[family-name:var(--font-manrope)] text-[15px] font-semibold text-[#1a1a1a]">
+        <span className="font-[family-name:var(--font-manrope)] text-[calc(15px*var(--fs-scale))] font-semibold text-[#1a1a1a]">
           {t(`${item.id}.question`)}
         </span>
         <span
           aria-hidden="true"
-          className={`shrink-0 text-[24px] leading-none font-light text-[#c5a880] transition-transform duration-300 ${
+          className={`shrink-0 text-[calc(24px*var(--fs-scale))] leading-none font-light text-[#c5a880] transition-transform duration-300 ${
             isOpen ? "rotate-45" : "rotate-0"
           }`}
         >
@@ -36,7 +36,7 @@ export function AccordionItem({ item }: { item: FaqItem }) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="max-w-3xl pb-6 pr-12 font-[family-name:var(--font-manrope)] text-[14px] leading-[1.7] text-[#605a54]">
+          <p className="max-w-3xl pb-6 pr-12 font-[family-name:var(--font-manrope)] text-[calc(14px*var(--fs-scale))] leading-[1.7] text-[#605a54]">
             {t(`${item.id}.answer`)}
           </p>
         </div>

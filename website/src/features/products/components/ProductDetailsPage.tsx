@@ -82,7 +82,7 @@ function ProductBreadcrumb({ name }: { name: string }) {
         <span key={crumb.label} className="flex items-center gap-2">
           <Link
             href={crumb.href}
-            className="text-[12px] leading-[normal] font-normal whitespace-nowrap text-[#605a54]"
+            className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-normal whitespace-nowrap text-[#605a54]"
           >
             {crumb.label}
           </Link>
@@ -92,7 +92,7 @@ function ProductBreadcrumb({ name }: { name: string }) {
       <span
         dir="ltr"
         style={{ unicodeBidi: "isolate" }}
-        className="text-[12px] leading-[normal] font-semibold whitespace-nowrap text-left text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate]"
+        className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-semibold whitespace-nowrap text-left text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate]"
       >
         {name}
       </span>
@@ -143,10 +143,10 @@ const RelatedProducts = memo(function RelatedProducts({
   return (
     <section className="flex flex-col items-start gap-8 bg-[#f4f0eb] px-4 py-16 sm:px-6 md:px-10 lg:gap-12 lg:px-20 lg:py-[100px]">
       <div className="flex w-full flex-col items-center gap-3 text-center">
-        <h2 className="w-full font-[family-name:var(--font-instrument-serif)] text-[36px] leading-[normal] text-[#1a1a1a] sm:text-[48px]">
+        <h2 className="w-full font-[family-name:var(--font-instrument-serif)] text-[calc(36px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] sm:text-[calc(48px*var(--fs-scale))]">
           {t("related.title")}
         </h2>
-        <p className="w-full text-[14px] leading-[normal] font-normal text-[#605a54]">
+        <p className="w-full text-[calc(14px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54]">
           {t("related.subtitle")}
         </p>
       </div>
@@ -291,10 +291,10 @@ export function ProductDetailsPage({
           />
           <div className="flex w-full items-center justify-between gap-4 rounded-md bg-[#f4f0eb] p-5">
             <div className="flex max-w-[380px] flex-col items-start gap-1">
-              <p className="text-[13px] leading-[normal] font-semibold text-[#1a1a1a]">
+              <p className="text-[calc(13px*var(--fs-scale))] leading-[normal] font-semibold text-[#1a1a1a]">
                 {t("giftWrap.title")}
               </p>
-              <p className="text-[12px] leading-[normal] font-normal text-[#605a54]">
+              <p className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54]">
                 {t("giftWrap.description")}
               </p>
             </div>
@@ -305,7 +305,7 @@ export function ProductDetailsPage({
               <button
                 type="button"
                 aria-label={t("quantity.decrease")}
-                className="inline-flex h-12 w-11 items-center justify-center text-[16px] leading-none font-normal text-[#605a54] disabled:opacity-40"
+                className="inline-flex h-12 w-11 items-center justify-center text-[calc(16px*var(--fs-scale))] leading-none font-normal text-[#605a54] disabled:opacity-40"
                 disabled={quantity <= 1}
                 onClick={() =>
                   setQuantity((current) => Math.max(1, current - 1))
@@ -313,13 +313,13 @@ export function ProductDetailsPage({
               >
                 -
               </button>
-              <span className="min-w-4 text-center text-[14px] leading-[normal] font-semibold text-[#1a1a1a]">
+              <span className="min-w-4 text-center text-[calc(14px*var(--fs-scale))] leading-[normal] font-semibold text-[#1a1a1a]">
                 {quantity}
               </span>
               <button
                 type="button"
                 aria-label={t("quantity.increase")}
-                className="inline-flex h-12 w-11 items-center justify-center text-[16px] leading-none font-normal text-[#605a54]"
+                className="inline-flex h-12 w-11 items-center justify-center text-[calc(16px*var(--fs-scale))] leading-none font-normal text-[#605a54]"
                 onClick={() => setQuantity((current) => current + 1)}
               >
                 +
@@ -336,26 +336,26 @@ export function ProductDetailsPage({
           </div>
           <div className="h-px w-full bg-[#ebe6de]" />
           <div className="flex w-full flex-col items-start gap-5">
-            <h2 className="font-[family-name:var(--font-instrument-serif)] text-[28px] leading-[normal] text-[#1a1a1a] sm:text-[32px]">
+            <h2 className="font-[family-name:var(--font-instrument-serif)] text-[calc(28px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] sm:text-[calc(32px*var(--fs-scale))]">
               {t("sections.scentAnatomy")}
             </h2>
             <p
               dir="ltr"
               style={{ unicodeBidi: "isolate" }}
-              className="text-[14px] leading-[1.6] font-normal text-left text-[#605a54] [direction:ltr] [unicode-bidi:isolate]"
+              className="text-[calc(14px*var(--fs-scale))] leading-[1.6] font-normal text-left text-[#605a54] [direction:ltr] [unicode-bidi:isolate]"
             >
               {product.description}
             </p>
             {product.notes ? (
               <div className="flex w-full flex-col gap-3">
                 <div className="flex flex-col gap-1 border-b border-[#ebe6de] py-2 sm:flex-row sm:items-start sm:justify-between">
-                  <p className="text-[12px] leading-[normal] font-bold text-[#1a1a1a] uppercase">
+                  <p className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-[#1a1a1a] uppercase">
                     {t("sections.notes")}
                   </p>
                   <p
                     dir="ltr"
                     style={{ unicodeBidi: "isolate" }}
-                    className="text-[13px] leading-[normal] font-normal text-left text-[#605a54] [direction:ltr] [unicode-bidi:isolate] sm:text-right"
+                    className="text-[calc(13px*var(--fs-scale))] leading-[normal] font-normal text-left text-[#605a54] [direction:ltr] [unicode-bidi:isolate] sm:text-right"
                   >
                     {product.notes}
                   </p>

@@ -68,7 +68,7 @@ function FilterCheckbox({
           !checked && "bg-white",
         )}
       />
-      <span className="text-[13px] font-normal whitespace-nowrap text-[#1a1a1a]">
+      <span className="text-[calc(13px*var(--fs-scale))] font-normal whitespace-nowrap text-[#1a1a1a]">
         {label}
       </span>
     </label>
@@ -92,7 +92,7 @@ function FilterBlock({
 }) {
   return (
     <div className="flex w-full flex-col items-start gap-4">
-      <p className="text-[12px] font-bold uppercase whitespace-nowrap text-[#1a1a1a]">
+      <p className="text-[calc(12px*var(--fs-scale))] font-bold uppercase whitespace-nowrap text-[#1a1a1a]">
         {title}
       </p>
       <div className="flex w-full flex-col items-start gap-3">
@@ -168,7 +168,7 @@ function FilterSearch({
         value={draft}
         placeholder={placeholder}
         aria-label={ariaLabel}
-        className="w-full bg-transparent text-[12px] leading-[normal] text-[#1a1a1a] outline-none placeholder:text-[#605a54]"
+        className="w-full bg-transparent text-[calc(12px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] outline-none placeholder:text-[#605a54]"
         onChange={(event) => setDraft(event.target.value)}
       />
     </form>
@@ -287,7 +287,7 @@ function PriceRangeFilter({
 
   return (
     <div className="flex w-full flex-col items-start gap-4">
-      <p className="text-[12px] font-bold uppercase whitespace-nowrap text-[#1a1a1a]">
+      <p className="text-[calc(12px*var(--fs-scale))] font-bold uppercase whitespace-nowrap text-[#1a1a1a]">
         {t("filters.priceRange")}
       </p>
       <div className="flex w-full max-w-[260px] flex-col items-start gap-3 lg:max-w-none">
@@ -359,7 +359,7 @@ function PriceRangeFilter({
         </div>
         <div
           dir="ltr"
-          className="flex w-full items-start justify-between text-[12px] font-normal whitespace-nowrap text-[#1a1a1a] [direction:ltr]"
+          className="flex w-full items-start justify-between text-[calc(12px*var(--fs-scale))] font-normal whitespace-nowrap text-[#1a1a1a] [direction:ltr]"
         >
           <p ref={minLabelRef}>{formatWholePrice(minPrice)}</p>
           <p ref={maxLabelRef}>{formatWholePrice(maxPrice)}</p>
@@ -397,7 +397,7 @@ export function ProductFilters({ query }: { query: ProductListQuery }) {
     <aside className="w-full shrink-0 lg:w-[260px]">
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded border border-solid border-[#ebe6de] bg-white px-4 py-3 text-[12px] font-semibold uppercase text-[#1a1a1a] lg:hidden"
+        className="flex w-full items-center justify-between rounded border border-solid border-[#ebe6de] bg-white px-4 py-3 text-[calc(12px*var(--fs-scale))] font-semibold uppercase text-[#1a1a1a] lg:hidden"
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >

@@ -3,6 +3,10 @@
 :root {
   --background: #fafafa;
   --foreground: #18181b;
+  /* Site-wide text scale. Most type is set with fixed px classes such as
+     text-[12px], which ignore the html font-size, so those classes are written
+     as text-[calc(12px*var(--fs-scale))]. Change this one value to resize all text. */
+  --fs-scale: 1.2;
 }
 
 @theme inline {
@@ -12,6 +16,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* text-sm is rem-based, so route it through the same scale as the px classes. */
+@theme {
+  --text-sm: calc(14px * var(--fs-scale));
+}
+
 html {
   font-size: 106.25%; /* ≈17px base for improved readability across all locales */
 }
@@ -19,6 +28,8 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  /* Base size for elements with no explicit text class: html size × scale. */
+  font-size: calc(1rem * var(--fs-scale));
 }
 
 html[dir="rtl"] {

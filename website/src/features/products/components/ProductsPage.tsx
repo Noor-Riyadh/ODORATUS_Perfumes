@@ -32,13 +32,13 @@ export function ProductsPage({ searchParams }: ProductsPageProps) {
     <section className="overflow-x-hidden bg-[#faf8f5] text-[#1a1a1a]">
       <ProductBreadcrumbs />
       <div className="flex w-full flex-col items-start px-4 pb-8 sm:px-6 md:px-10 lg:px-20 lg:pb-10">
-        <h1 className="w-full font-[family-name:var(--font-instrument-serif)] text-[40px] leading-tight text-[#1a1a1a] sm:text-[52px] lg:text-[64px] lg:leading-normal">
+        <h1 className="w-full font-[family-name:var(--font-instrument-serif)] text-[calc(40px*var(--fs-scale))] leading-tight text-[#1a1a1a] sm:text-[calc(52px*var(--fs-scale))] lg:text-[calc(64px*var(--fs-scale))] lg:leading-normal">
           {t("title")}
         </h1>
         <p
           dir="ltr"
           style={{ unicodeBidi: "isolate" }}
-          className="mt-2 w-full text-left text-[14px] font-normal text-[#605a54] [direction:ltr] [unicode-bidi:isolate] sm:mt-0"
+          className="mt-2 w-full text-left text-[calc(14px*var(--fs-scale))] font-normal text-[#605a54] [direction:ltr] [unicode-bidi:isolate] sm:mt-0"
         >
           {t("description")}
         </p>

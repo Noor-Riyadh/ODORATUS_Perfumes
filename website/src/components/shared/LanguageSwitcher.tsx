@@ -9,7 +9,7 @@ export function LanguageSwitcher() {
   const router = useRouter();
 
   return (
-    <div className="flex items-center gap-1 rounded-full border border-[#ebe6de] px-2 py-1 text-[10px] font-semibold uppercase">
+    <div className="flex items-center gap-1 rounded-full border border-[#ebe6de] px-2 py-1 text-[calc(10px*var(--fs-scale))] font-semibold uppercase">
       <button
         type="button"
         className={locale === "en" ? "text-[#c5a880]" : "text-[#605a54]"}

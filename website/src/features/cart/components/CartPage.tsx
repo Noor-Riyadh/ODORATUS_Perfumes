@@ -22,7 +22,7 @@ export function CartPage() {
         aria-label="Breadcrumb"
         className="hidden px-20 py-6 lg:block"
       >
-        <p className="text-[12px] leading-[normal] font-normal text-[#605a54]">
+        <p className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54]">
           <Link href="/">{t("breadcrumb.home")}</Link>
           <span>{"  /  "}</span>
           <span>{t("breadcrumb.cart")}</span>
@@ -31,10 +31,10 @@ export function CartPage() {
       <div className="flex flex-col gap-7 px-5 pt-7 pb-12 lg:flex-row lg:items-start lg:gap-16 lg:px-20 lg:pt-4 lg:pb-[100px]">
         <div className="flex min-w-0 flex-1 flex-col gap-7 lg:gap-5">
           <div className="flex flex-col items-start gap-1.5 lg:flex-row lg:items-end lg:justify-between">
-            <h1 className="font-[family-name:var(--font-instrument-serif)] text-[43px] leading-[normal] text-[#1a1a1a] lg:text-[56px]">
+            <h1 className="font-[family-name:var(--font-instrument-serif)] text-[calc(43px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] lg:text-[calc(56px*var(--fs-scale))]">
               {t("title")}
             </h1>
-            <p className="text-[11px] leading-[normal] font-normal text-[#605a54] uppercase lg:text-[12px]">
+            <p className="text-[calc(11px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54] uppercase lg:text-[calc(12px*var(--fs-scale))]">
               <span className="lg:hidden">
                 {t("itemCountBag", { count: itemCount })}
               </span>
@@ -45,7 +45,7 @@ export function CartPage() {
           </div>
           <div className="flex flex-col gap-3.5 lg:gap-5">
             {lines.length === 0 ? (
-              <p className="text-[14px] leading-[normal] text-[#605a54]">
+              <p className="text-[calc(14px*var(--fs-scale))] leading-[normal] text-[#605a54]">
                 {t("empty")}
               </p>
             ) : (

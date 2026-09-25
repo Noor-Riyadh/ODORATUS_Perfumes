@@ -53,14 +53,14 @@ export function Footer() {
             <Link
               href="/"
               dir="ltr"
-              className="font-[family-name:var(--font-instrument-serif)] text-[32px] leading-[normal] tracking-[0.18em] text-white [direction:ltr] [unicode-bidi:isolate] sm:text-[40px]"
+              className="font-[family-name:var(--font-instrument-serif)] text-[calc(32px*var(--fs-scale))] leading-[normal] tracking-[0.18em] text-white [direction:ltr] [unicode-bidi:isolate] sm:text-[calc(40px*var(--fs-scale))]"
             >
               ODORATUS
             </Link>
             <p
               dir="ltr"
               style={{ unicodeBidi: "isolate" }}
-              className="text-[14px] leading-[1.6] font-normal text-[#f2ede4] opacity-80 [direction:ltr] [unicode-bidi:isolate]"
+              className="text-[calc(14px*var(--fs-scale))] leading-[1.6] font-normal text-[#f2ede4] opacity-80 [direction:ltr] [unicode-bidi:isolate]"
             >
               {t("description")}
             </p>
@@ -85,13 +85,13 @@ export function Footer() {
                 key={column.title}
                 className="flex w-full flex-col items-start gap-5 lg:w-[180px]"
               >
-                <p className="text-[12px] leading-[normal] font-bold text-[#c5a880] uppercase">
+                <p className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-[#c5a880] uppercase">
                   {column.title}
                 </p>
                 {column.links.map((link) => (
                   <p
                     key={link}
-                    className="text-[13px] leading-[normal] font-normal text-white opacity-70"
+                    className="text-[calc(13px*var(--fs-scale))] leading-[normal] font-normal text-white opacity-70"
                   >
                     {link}
                   </p>
@@ -100,13 +100,13 @@ export function Footer() {
                   <>
                     <Link
                       href="/faqs"
-                      className="text-[13px] leading-[normal] font-normal text-white opacity-70"
+                      className="text-[calc(13px*var(--fs-scale))] leading-[normal] font-normal text-white opacity-70"
                     >
                       {t("customerCare.faqs")}
                     </Link>
                     <Link
                       href="/contact"
-                      className="text-[13px] leading-[normal] font-normal text-white opacity-70"
+                      className="text-[calc(13px*var(--fs-scale))] leading-[normal] font-normal text-white opacity-70"
                     >
                       {t("customerCare.contact")}
                     </Link>
@@ -119,7 +119,7 @@ export function Footer() {
         <div className="flex flex-col gap-6">
           <div className="h-px w-full bg-white/13" />
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-[12px] leading-[normal] font-normal whitespace-nowrap text-white opacity-50">
+            <p className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-normal whitespace-nowrap text-white opacity-50">
               <span
                 dir="ltr"
                 className="[direction:ltr] [unicode-bidi:isolate]"
@@ -129,13 +129,13 @@ export function Footer() {
               {t("rightsReserved")}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <p className="text-[11px] leading-[normal] font-normal text-white uppercase opacity-40">
+              <p className="text-[calc(11px*var(--fs-scale))] leading-[normal] font-normal text-white uppercase opacity-40">
                 {t("securedCheckout")}
               </p>
               {PAYMENT_METHODS.map((method) => (
                 <span
                   key={method}
-                  className="rounded border border-white/13 px-2 py-1 text-[9px] leading-[normal] font-semibold text-white uppercase opacity-60"
+                  className="rounded border border-white/13 px-2 py-1 text-[calc(9px*var(--fs-scale))] leading-[normal] font-semibold text-white uppercase opacity-60"
                 >
                   <span dir="ltr">{t(`paymentMethods.${method}`)}</span>
                 </span>

@@ -39,7 +39,7 @@ export function ProductPagination({
           <img src="/icons/arrow-left.svg" alt="" width={14} height={14} />
         </button>
       )}
-      <p className="text-[13px] font-normal whitespace-nowrap text-[#605a54]">
+      <p className="text-[calc(13px*var(--fs-scale))] font-normal whitespace-nowrap text-[#605a54]">
         {t("pagination.pageOf", { page, pageCount })}
       </p>
       {nextHref ? (

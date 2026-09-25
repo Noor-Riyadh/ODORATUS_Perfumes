@@ -52,20 +52,20 @@ export function ProductCard({ product }: ProductCardProps) {
             href={productPaths.detail(product.id)}
             className="flex min-w-0 flex-col items-start gap-1"
           >
-            <h2 dir="ltr" className="w-full text-left font-[family-name:var(--font-instrument-serif)] text-[20px] text-[#1a1a1a] [direction:ltr] sm:truncate sm:text-[22px]">
+            <h2 dir="ltr" className="w-full text-left font-[family-name:var(--font-instrument-serif)] text-[calc(20px*var(--fs-scale))] text-[#1a1a1a] [direction:ltr] sm:truncate sm:text-[calc(22px*var(--fs-scale))]">
               {product.name}
             </h2>
-            <p dir="ltr" className="w-full text-left text-[11px] font-normal uppercase text-[#c5a880] [direction:ltr] sm:truncate">
+            <p dir="ltr" className="w-full text-left text-[calc(11px*var(--fs-scale))] font-normal uppercase text-[#c5a880] [direction:ltr] sm:truncate">
               {product.notes}
             </p>
           </Link>
-          <p dir="ltr" className="shrink-0 text-left text-[15px] font-semibold text-[#1a1a1a] [direction:ltr]">
+          <p dir="ltr" className="shrink-0 text-left text-[calc(15px*var(--fs-scale))] font-semibold text-[#1a1a1a] [direction:ltr]">
             {formatWholePrice(product.price)}
           </p>
         </div>
         <button
           type="button"
-          className="flex w-full cursor-pointer items-center justify-center rounded border border-solid border-[#ebe6de] py-3 text-[11px] font-semibold uppercase whitespace-nowrap text-[#1a1a1a]"
+          className="flex w-full cursor-pointer items-center justify-center rounded border border-solid border-[#ebe6de] py-3 text-[calc(11px*var(--fs-scale))] font-semibold uppercase whitespace-nowrap text-[#1a1a1a]"
           onClick={() =>
             addItem({
               productId: product.id,

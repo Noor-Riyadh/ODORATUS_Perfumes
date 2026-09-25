@@ -15,7 +15,7 @@ export function CartNavLink() {
       aria-label={`Cart, ${quantity} ${quantity === 1 ? "item" : "items"}`}
     >
       <img src="/icons/shopping-bag.svg" alt="" width={20} height={20} />
-      <span className="rounded-full bg-[#c5a880] px-1.5 py-0.5 text-[10px] leading-[normal] font-bold text-white">
+      <span className="rounded-full bg-[#c5a880] px-1.5 py-0.5 text-[calc(10px*var(--fs-scale))] leading-[normal] font-bold text-white">
         {quantity}
       </span>
     </Link>

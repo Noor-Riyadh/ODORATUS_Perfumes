@@ -28,7 +28,7 @@ export function WishlistNavLink() {
           strokeLinejoin="round"
         />
       </svg>
-      <span className="rounded-full bg-[#c5a880] px-1.5 py-0.5 text-[10px] leading-[normal] font-bold text-white">
+      <span className="rounded-full bg-[#c5a880] px-1.5 py-0.5 text-[calc(10px*var(--fs-scale))] leading-[normal] font-bold text-white">
         {count}
       </span>
     </Link>

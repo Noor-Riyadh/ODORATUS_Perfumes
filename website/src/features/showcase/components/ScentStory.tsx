@@ -213,7 +213,7 @@ export function ScentStory() {
   return (
     <section
       ref={storyRef}
-      className="relative h-[600vh] min-h-screen w-full overflow-x-hidden bg-[#faf8f5] text-[#1a1a1a]"
+      className="relative h-[600vh] min-h-screen w-full overflow-x-clip bg-[#faf8f5] text-[#1a1a1a]"
       aria-label={t("ariaLabel")}
     >
       <div className="scent-story-stage relative min-h-screen h-screen w-full overflow-hidden bg-[#faf8f5]">
@@ -270,14 +270,14 @@ export function ScentStory() {
                 </h1>
                 <p
                   dir="ltr"
-                  className="mt-6 max-w-[28rem] text-left font-[family-name:var(--font-manrope)] text-[18px] leading-[1.5] font-normal text-[#605a54] [direction:ltr]"
+                  className="mt-6 max-w-[28rem] text-left font-[family-name:var(--font-manrope)] text-[calc(18px*var(--fs-scale))] leading-[1.5] font-normal text-[#605a54] [direction:ltr]"
                 >
                   {t(stage.subtextKey)}
                 </p>
                 {stage.action ? (
                   <Link
                     href="/products"
-                    className="pointer-events-auto mt-8 inline-flex bg-[#1a1a1a] px-7 py-4 font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.12em] text-[#faf8f5] uppercase transition-colors hover:bg-[#c5a880]"
+                    className="pointer-events-auto mt-8 inline-flex bg-[#1a1a1a] px-7 py-4 font-[family-name:var(--font-manrope)] text-[calc(12px*var(--fs-scale))] font-bold tracking-[0.12em] text-[#faf8f5] uppercase transition-colors hover:bg-[#c5a880]"
                   >
                     {t("shopButton")}
                   </Link>

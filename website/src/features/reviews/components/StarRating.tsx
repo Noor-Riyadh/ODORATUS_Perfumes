@@ -8,9 +8,9 @@ type StarRatingProps = {
 };
 
 const sizes = {
-  sm: "text-[14px]",
-  md: "text-[18px]",
-  lg: "text-[28px]",
+  sm: "text-[calc(14px*var(--fs-scale))]",
+  md: "text-[calc(18px*var(--fs-scale))]",
+  lg: "text-[calc(28px*var(--fs-scale))]",
 } as const;
 
 export function StarRating({

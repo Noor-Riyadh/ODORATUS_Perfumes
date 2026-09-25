@@ -30,7 +30,7 @@ export function ProductDetailsWithCart({
           quantity={quantity}
           label={`${t("addToCart")} / ${formatWholePrice(unitPrice)}`}
           dir="ltr"
-          className="flex w-full items-center justify-center rounded bg-[#1a1a1a] py-4 text-[13px] leading-[normal] font-bold text-white uppercase [direction:ltr] [unicode-bidi:isolate]"
+          className="flex w-full items-center justify-center rounded bg-[#1a1a1a] py-4 text-[calc(13px*var(--fs-scale))] leading-[normal] font-bold text-white uppercase [direction:ltr] [unicode-bidi:isolate]"
         />
       )}
     />
