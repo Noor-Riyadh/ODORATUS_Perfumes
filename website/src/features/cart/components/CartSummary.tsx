@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cartPaths } from "@/features/cart/paths";
 import { productPaths } from "@/features/products/paths";
 import { formatCartAmount } from "@/features/cart/utils/cart.utils";

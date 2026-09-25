@@ -1,16 +1,18 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useWishlist } from "@/features/wishlist/hooks/useWishlist";
 
 export function WishlistNavLink() {
   const { count } = useWishlist();
+  const t = useTranslations("wishlist");
 
   return (
     <Link
       href="/wishlist"
       className="flex items-center gap-1.5"
-      aria-label={`Wishlist, ${count} ${count === 1 ? "item" : "items"}`}
+      aria-label={t("navLabel", { count })}
     >
       <svg
         aria-hidden="true"

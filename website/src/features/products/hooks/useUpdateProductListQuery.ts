@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import type { ProductListQuery } from "@/features/products/types/product.types";
 import {
   PRODUCT_PAGE_SIZE,

@@ -1,14 +1,18 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Suspense, useState, type FormEvent } from "react";
 import { CartNavLink } from "@/features/cart";
 import { productPaths } from "@/features/products";
 import { WishlistNavLink } from "@/features/wishlist";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { Link as LocaleLink } from "@/i18n/navigation";
+import {
+  Link as LocaleLink,
+  usePathname,
+  useRouter,
+} from "@/i18n/navigation";
 
 const NAV_LINKS = [
   { href: "/", label: "home" },

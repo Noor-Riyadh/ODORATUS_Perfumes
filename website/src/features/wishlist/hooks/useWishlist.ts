@@ -1,6 +1,7 @@
 "use client";
 
 import { useToastStore } from "@/features/cart/store/toast.store";
+import { useTranslations } from "next-intl";
 import type { Product } from "@/features/products/types/product.types";
 import { useWishlistStore } from "@/features/wishlist/store/wishlist.store";
 
@@ -12,15 +13,16 @@ export function useWishlist() {
   );
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
   const showToast = useToastStore((state) => state.show);
+  const t = useTranslations("wishlist");
 
   function add(product: Product) {
     addToWishlist(product);
-    showToast(`${product.name} added to wishlist`);
+    showToast(t("toasts.added", { product: product.name }));
   }
 
   function remove(product: Product) {
     removeFromWishlist(product.id);
-    showToast(`${product.name} removed from wishlist`);
+    showToast(t("toasts.removed", { product: product.name }));
   }
 
   function toggle(product: Product) {
@@ -29,8 +31,8 @@ export function useWishlist() {
     toggleWishlist(product);
     showToast(
       isWishlisted
-        ? `${product.name} removed from wishlist`
-        : `${product.name} added to wishlist`,
+        ? t("toasts.removed", { product: product.name })
+        : t("toasts.added", { product: product.name }),
     );
   }
 

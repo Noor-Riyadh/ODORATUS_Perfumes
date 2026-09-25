@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useLayoutEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type ScentStage = {
   productImage: string;
-  headline: string;
-  subtext: string;
+  headlineKey: "headline1" | "headline2" | "headline3" | "headline4";
+  subtextKey: "subtext1" | "subtext2" | "subtext3" | "subtext4";
   textPosition: string;
-  alt: string;
+  altKey: "alt1" | "alt2" | "alt3" | "alt4";
   action?: boolean;
 };
 
@@ -19,42 +20,40 @@ const stages: ScentStage[] = [
   {
     productImage:
       "/images/products/showcase/bottle-still-removebg-preview.png",
-    headline: "ODORATUS",
-    subtext: "A signature scent, quietly bold.",
+    headlineKey: "headline1",
+    subtextKey: "subtext1",
     textPosition: "items-start justify-center pt-20 text-center",
-    alt: "Odoratus fragrance bottle",
+    altKey: "alt1",
   },
   {
     productImage:
       "/images/products/showcase/bottle-motion-removebg-preview.png",
-    headline: "Unveiled.",
-    subtext:
-      "Composed with patience, precision, and an instinct for the exceptional.",
+    headlineKey: "headline2",
+    subtextKey: "subtext2",
     textPosition: "items-end justify-end pb-28 pl-28",
-    alt: "Odoratus fragrance bottle in motion",
+    altKey: "alt2",
   },
   {
     productImage:
       "/images/products/showcase/bottle-spray-wide-removebg-preview.png",
-    headline: "One spray.",
-    subtext:
-      "It opens in light, then settles into warmth, depth, and quiet intrigue.",
+    headlineKey: "headline3",
+    subtextKey: "subtext3",
     textPosition: "items-start justify-start pt-28 pl-28",
-    alt: "Odoratus fragrance being sprayed",
+    altKey: "alt3",
   },
   {
     productImage:
       "/images/products/showcase/bottle-spray-close-removebg-preview.png",
-    headline: "Lingers.",
-    subtext:
-      "A final note that stays close. Discover the signature scent.",
+    headlineKey: "headline4",
+    subtextKey: "subtext4",
     textPosition: "items-end justify-end pb-28 pl-28",
-    alt: "Close view of Odoratus fragrance spray",
+    altKey: "alt4",
     action: true,
   },
 ];
 
 export function ScentStory() {
+  const t = useTranslations("scentStory");
   const storyRef = useRef<HTMLElement>(null);
   const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const visualRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -215,12 +214,12 @@ export function ScentStory() {
     <section
       ref={storyRef}
       className="relative h-[600vh] min-h-screen w-full overflow-x-hidden bg-[#faf8f5] text-[#1a1a1a]"
-      aria-label="The Odoratus scent story"
+      aria-label={t("ariaLabel")}
     >
       <div className="scent-story-stage relative min-h-screen h-screen w-full overflow-hidden bg-[#faf8f5]">
         {stages.map((stage, index) => (
           <div
-            key={stage.headline}
+            key={stage.headlineKey}
             ref={(element) => {
               stageRefs.current[index] = element;
             }}
@@ -245,7 +244,7 @@ export function ScentStory() {
                     imageRefs.current[index] = element;
                   }}
                   src={stage.productImage}
-                  alt={stage.alt}
+                  alt={t(stage.altKey)}
                   fill
                   priority={index === 0}
                   sizes="(min-width: 1024px) 56rem, 100vw"
@@ -267,20 +266,20 @@ export function ScentStory() {
                   dir="ltr"
                   className="text-left font-[family-name:var(--font-instrument-serif)] text-[clamp(5rem,10vw,10rem)] leading-[0.86] tracking-[-0.03em] text-[#1a1a1a] [direction:ltr]"
                 >
-                  {stage.headline}
+                  {t(stage.headlineKey)}
                 </h1>
                 <p
                   dir="ltr"
                   className="mt-6 max-w-[28rem] text-left font-[family-name:var(--font-manrope)] text-[18px] leading-[1.5] font-normal text-[#605a54] [direction:ltr]"
                 >
-                  {stage.subtext}
+                  {t(stage.subtextKey)}
                 </p>
                 {stage.action ? (
                   <Link
                     href="/products"
                     className="pointer-events-auto mt-8 inline-flex bg-[#1a1a1a] px-7 py-4 font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.12em] text-[#faf8f5] uppercase transition-colors hover:bg-[#c5a880]"
                   >
-                    Shop Odoratus
+                    {t("shopButton")}
                   </Link>
                 ) : null}
               </div>

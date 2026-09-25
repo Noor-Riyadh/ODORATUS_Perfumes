@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { FaqItem } from "@/features/faqs/data/faq.data";
 
 export function AccordionItem({ item }: { item: FaqItem }) {
+  const t = useTranslations("faqs.items");
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,7 +18,7 @@ export function AccordionItem({ item }: { item: FaqItem }) {
         onClick={() => setIsOpen((open) => !open)}
       >
         <span className="font-[family-name:var(--font-manrope)] text-[15px] font-semibold text-[#1a1a1a]">
-          {item.question}
+          {t(`${item.id}.question`)}
         </span>
         <span
           aria-hidden="true"
@@ -35,7 +37,7 @@ export function AccordionItem({ item }: { item: FaqItem }) {
       >
         <div className="overflow-hidden">
           <p className="max-w-3xl pb-6 pr-12 font-[family-name:var(--font-manrope)] text-[14px] leading-[1.7] text-[#605a54]">
-            {item.answer}
+            {t(`${item.id}.answer`)}
           </p>
         </div>
       </div>

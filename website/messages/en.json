@@ -6,6 +6,136 @@
     "contact": "Contact",
     "faqs": "FAQs"
   },
+  "scentStory": {
+    "ariaLabel": "The Odoratus scent story",
+    "headline1": "ODORATUS",
+    "subtext1": "A signature scent, quietly bold.",
+    "headline2": "Unveiled.",
+    "subtext2": "Composed with patience, precision, and an instinct for the exceptional.",
+    "headline3": "One spray.",
+    "subtext3": "It opens in light, then settles into warmth, depth, and quiet intrigue.",
+    "headline4": "Lingers.",
+    "subtext4": "A final note that stays close. Discover the signature scent.",
+    "alt1": "Odoratus fragrance bottle",
+    "alt2": "Odoratus fragrance bottle in motion",
+    "alt3": "Odoratus fragrance being sprayed",
+    "alt4": "Close view of Odoratus fragrance spray",
+    "shopButton": "Shop Odoratus"
+  },
+  "faqs": {
+    "eyebrow": "Customer Care",
+    "title": "Frequently Asked Questions",
+    "intro": "Everything you need to know about discovering, ordering, and caring for your Odoratus fragrance.",
+    "ariaLabel": "Frequently asked questions",
+    "cta": {
+      "title": "Still have questions?",
+      "description": "Our team would be happy to help you find your signature scent.",
+      "button": "Chat with us on WhatsApp"
+    },
+    "items": {
+      "shipping-delivery": {
+        "question": "How long does shipping and delivery take?",
+        "answer": "Orders are usually prepared within 1–2 business days. Delivery typically takes 2–5 business days after dispatch, depending on your location. We will share tracking details as soon as your order leaves our atelier."
+      },
+      "whatsapp-order": {
+        "question": "How can I place an order through WhatsApp?",
+        "answer": "Send us a message on WhatsApp with the fragrance name, size, quantity, and delivery details you would like. Our team will confirm availability, the final total, and the best payment and delivery option for your order."
+      },
+      "returns-exchanges": {
+        "question": "What is your return or exchange policy?",
+        "answer": "Because fragrance is a personal product, we can accept returns or exchanges on unopened, unused bottles within 14 days of delivery. Please contact our team before sending anything back so we can guide you through the process."
+      },
+      "choose-fragrance": {
+        "question": "How do I choose the right fragrance?",
+        "answer": "Start with the scent family and notes that appeal to you, then consider when you want to wear it. If you are unsure, message us for an olfactory consultation and we can recommend a fragrance based on your preferences and occasion."
+      },
+      "gift-wrapping": {
+        "question": "Do you offer gift wrapping?",
+        "answer": "Yes. Complimentary signature gift wrapping is available on orders above $150. Each wrapped bottle is presented in our linen paper box with a custom wax seal, ready to give."
+      },
+      "authenticity": {
+        "question": "How do I know your fragrances are authentic?",
+        "answer": "Every Odoratus fragrance is sourced, blended, and bottled through our atelier process. Products purchased through our website or official WhatsApp ordering channel are genuine and supplied directly by Odoratus."
+      },
+      "payment-methods": {
+        "question": "Which payment methods do you accept?",
+        "answer": "We accept major cards including Visa, Mastercard, and American Express through our secured checkout. For WhatsApp orders, our team will confirm the available payment options before completing your order."
+      },
+      "fragrance-longevity": {
+        "question": "How long does a fragrance last on the skin?",
+        "answer": "Longevity depends on the fragrance, your skin, the weather, and where it is applied. Most compositions last between 6 and 10 hours, while a soft trace may remain on clothing even longer."
+      },
+      "samples": {
+        "question": "Can I sample a fragrance before buying a full bottle?",
+        "answer": "Our team can help you choose a discovery option when one is available. You can also contact us through WhatsApp for guidance on notes, intensity, and the closest match to a fragrance you already enjoy."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Customer Care",
+    "title": "Get in Touch",
+    "intro": "We are here to help you discover your signature scent, answer questions, and make every Odoratus experience feel personal.",
+    "methods": {
+      "title": "Contact methods",
+      "whatsapp": "WhatsApp",
+      "whatsappDescription": "Chat with our fragrance team",
+      "phone": "Phone",
+      "email": "Email",
+      "responseTime": "We usually respond within one business day."
+    },
+    "form": {
+      "title": "Send a message",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message"
+    },
+    "success": "Your message was sent successfully"
+  },
+  "categories": {
+    "eyebrow": "The Collection",
+    "title": "Shop by Category",
+    "intro": "Explore our fragrance collections, each composed with its own character and atmosphere.",
+    "loading": "Loading categories...",
+    "empty": "No categories found.",
+    "imageFallback": "Odoratus collection",
+    "count": "{count, plural, =1 {# fragrance} other {# fragrances}}",
+    "items": {
+      "pureExtractions": {
+        "label": "Pure Extractions",
+        "description": "Concentrated compositions with luminous clarity."
+      },
+      "privateReserve": {
+        "label": "Private Reserve",
+        "description": "Rare blends created for a deeper presence."
+      },
+      "atelierOils": {
+        "label": "Atelier Oils",
+        "description": "Rich perfume oils crafted in the Odoratus atelier."
+      },
+      "discoveryVault": {
+        "label": "Discovery Vault",
+        "description": "A considered introduction to our olfactory world."
+      }
+    }
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "subtitle": "Saved fragrances for your next discovery.",
+    "emptyTitle": "Your wishlist is waiting.",
+    "emptyDescription": "Save the fragrances that catch your attention and return to them whenever inspiration strikes.",
+    "browseProducts": "Browse Fragrances",
+    "navLabel": "Wishlist, {count, plural, =1 {# item} other {# items}}",
+    "actions": {
+      "add": "Add {product} to wishlist",
+      "remove": "Remove {product} from wishlist"
+    },
+    "toasts": {
+      "added": "{product} added to wishlist",
+      "removed": "{product} removed from wishlist"
+    }
+  },
   "footer": {
     "description": "An independent olfactory house cultivating slow-luxury liquid narratives. Every bottle is hand-poured in small batches using sustainably sourced botanicals.",
     "social": {

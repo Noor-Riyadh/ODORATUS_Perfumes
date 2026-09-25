@@ -8,40 +8,39 @@ const SOCIALS = [
   { href: "https://facebook.com", key: "facebook", icon: "/icons/facebook.svg" },
 ] as const;
 
-const COLUMNS = [
-  {
-    title: "collections.title",
-    links: [
-      "collections.laMaison",
-      "collections.privateReserve",
-      "collections.scentedCandles",
-      "collections.discoverySets",
-    ],
-  },
-  {
-    title: "customerCare.title",
-    links: [
-      "customerCare.olfactoryConsultation",
-      "customerCare.shippingReturns",
-      "customerCare.atelierAppointments",
-      "customerCare.careGuide",
-    ],
-  },
-  {
-    title: "about.title",
-    links: [
-      "about.philosophy",
-      "about.sourcingStandards",
-      "about.sustainability",
-      "about.journal",
-    ],
-  },
-] as const;
-
 const PAYMENT_METHODS = ["visa", "mastercard", "amex"] as const;
 
 export function Footer() {
   const t = useTranslations("footer");
+  const columns = [
+    {
+      title: t("collections.title"),
+      links: [
+        t("collections.laMaison"),
+        t("collections.privateReserve"),
+        t("collections.scentedCandles"),
+        t("collections.discoverySets"),
+      ],
+    },
+    {
+      title: t("customerCare.title"),
+      links: [
+        t("customerCare.olfactoryConsultation"),
+        t("customerCare.shippingReturns"),
+        t("customerCare.atelierAppointments"),
+        t("customerCare.careGuide"),
+      ],
+    },
+    {
+      title: t("about.title"),
+      links: [
+        t("about.philosophy"),
+        t("about.sourcingStandards"),
+        t("about.sustainability"),
+        t("about.journal"),
+      ],
+    },
+  ];
 
   return (
     <footer className="bg-[#1a1a1a] px-4 pt-16 pb-8 text-white sm:px-6 md:px-10 lg:px-20 lg:pt-20 lg:pb-10">
@@ -78,23 +77,23 @@ export function Footer() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 lg:gap-20">
-            {COLUMNS.map((column) => (
+            {columns.map((column) => (
               <div
                 key={column.title}
                 className="flex w-full flex-col items-start gap-5 lg:w-[180px]"
               >
                 <p className="text-[12px] leading-[normal] font-bold text-[#c5a880] uppercase">
-                  {t(column.title)}
+                  {column.title}
                 </p>
                 {column.links.map((link) => (
                   <p
                     key={link}
                     className="text-[13px] leading-[normal] font-normal text-white opacity-70"
                   >
-                    {t(link)}
+                    {link}
                   </p>
                 ))}
-                {column.title === "customerCare.title" ? (
+                {column.title === t("customerCare.title") ? (
                   <>
                     <Link
                       href="/faqs"

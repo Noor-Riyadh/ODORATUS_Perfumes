@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cartPaths } from "@/features/cart/paths";
 import { useToastStore } from "@/features/cart/store/toast.store";
 

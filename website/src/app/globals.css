@@ -17,3 +17,6 @@ body {
   color: var(--foreground);
 }
 
+html[dir="rtl"] {
+  font-size: 110%;
+}

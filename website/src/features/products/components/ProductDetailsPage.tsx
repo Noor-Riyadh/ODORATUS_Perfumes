@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { memo, useEffect, useMemo, useState, type ReactNode } from "react";
 import { ProductCard } from "@/features/products/components/ProductCard";

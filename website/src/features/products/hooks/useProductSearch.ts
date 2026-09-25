@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { productPaths } from "@/features/products/paths";
 
 export function useProductSearch(search = "") {

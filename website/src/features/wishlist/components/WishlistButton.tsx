@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { Product } from "@/features/products/types/product.types";
 import { useWishlist } from "@/features/wishlist/hooks/useWishlist";
 
@@ -10,6 +11,7 @@ type WishlistButtonProps = {
 
 export function WishlistButton({ product }: WishlistButtonProps) {
   const { isInWishlist, toggle } = useWishlist();
+  const t = useTranslations("wishlist");
   const isWishlisted = isInWishlist(product.id);
   const [isPressed, setIsPressed] = useState(false);
 
@@ -24,8 +26,8 @@ export function WishlistButton({ product }: WishlistButtonProps) {
       type="button"
       aria-label={
         isWishlisted
-          ? `Remove ${product.name} from wishlist`
-          : `Add ${product.name} to wishlist`
+          ? t("actions.remove", { product: product.name })
+          : t("actions.add", { product: product.name })
       }
       aria-pressed={isWishlisted}
       className={`inline-flex size-10 items-center justify-center rounded-full border border-[#ebe6de] bg-[#faf8f5]/90 text-[#1a1a1a] shadow-[0px_4px_12px_0px_rgba(26,26,26,0.08)] transition-transform duration-200 ${

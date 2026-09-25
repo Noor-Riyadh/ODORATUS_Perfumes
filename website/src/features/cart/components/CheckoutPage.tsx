@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 import { cartPaths } from "@/features/cart/paths";
 import { useCart } from "@/features/cart/hooks/useCart";
