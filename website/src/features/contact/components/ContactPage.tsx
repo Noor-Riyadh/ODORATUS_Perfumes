@@ -6,8 +6,8 @@ import { useState, type FormEvent } from "react";
 import { useToastStore } from "@/features/cart/store/toast.store";
 
 const WHATSAPP_ORDER_URL = "https://wa.me/201025598592";
-const PHONE_NUMBER = "+20 10 2559 8592";
-const PHONE_URL = "tel:+201025598592";
+const PHONE_NUMBER = "+20 10 0000 0000";
+const PHONE_URL = "tel:+201000000000";
 const EMAIL_ADDRESS = "hello@odoratus.com";
 const fieldClassName =
   "w-full rounded border border-[#ebe6de] bg-white px-4 py-3 font-[family-name:var(--font-manrope)] text-[calc(14px*var(--fs-scale))] text-[#1a1a1a] outline-none placeholder:text-[#605a54] focus:border-[#1a1a1a]";

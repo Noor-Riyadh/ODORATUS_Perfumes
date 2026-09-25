@@ -32,6 +32,7 @@ function SearchForm({
   className: string;
   onSearched?: () => void;
 }) {
+  const t = useTranslations("products.search");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -63,10 +64,9 @@ function SearchForm({
         key={search}
         name="search"
         defaultValue={search}
-        placeholder="Search fragrances..."
-        aria-label="Search fragrances"
-        dir="ltr"
-        className={`${searchFieldClassName} [direction:ltr] [unicode-bidi:isolate]`}
+        placeholder={t("placeholder")}
+        aria-label={t("ariaLabel")}
+        className={searchFieldClassName}
       />
     </form>
   );
@@ -75,6 +75,7 @@ function SearchForm({
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const t = useTranslations("nav");
+  const tSearch = useTranslations("products.search");
 
   return (
     <header className="sticky top-0 z-40 bg-[#faf8f5]">
@@ -130,10 +131,9 @@ export function Header() {
                   <img src="/icons/search.svg" alt="" width={14} height={14} />
                   <input
                     name="search"
-                    placeholder="Search fragrances..."
-                    aria-label="Search fragrances"
-                    dir="ltr"
-                    className={`${searchFieldClassName} [direction:ltr] [unicode-bidi:isolate]`}
+                    placeholder={tSearch("placeholder")}
+                    aria-label={tSearch("ariaLabel")}
+                    className={searchFieldClassName}
                   />
                 </div>
               }
