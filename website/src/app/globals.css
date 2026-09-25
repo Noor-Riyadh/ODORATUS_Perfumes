@@ -12,11 +12,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  font-size: 106.25%; /* ≈17px base for improved readability across all locales */
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
 }
 
 html[dir="rtl"] {
-  font-size: 110%;
+  font-size: 117%; /* 106.25% × 110% ≈ 117% — additional bump on top of the larger base */
 }

@@ -272,5 +272,38 @@
       "loading": "Loading product...",
       "notFound": "Product not found."
     }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "breadcrumb": {
+      "home": "Home",
+      "cart": "Cart"
+    },
+    "itemCount": "{count, plural, =1 {# item} other {# items}}",
+    "itemCountBag": "{count, plural, =1 {# item in your bag} other {# items in your bag}}",
+    "empty": "Your cart is empty.",
+    "item": {
+      "decrease": "Decrease quantity of {name}",
+      "increase": "Increase quantity of {name}",
+      "remove": "Remove"
+    },
+    "dialog": {
+      "title": "Remove this fragrance?",
+      "body": "{name} will be removed from your cart.",
+      "keep": "Keep",
+      "remove": "Remove"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "total": "Total",
+      "checkout": "Proceed to checkout",
+      "secure": "Secure checkout · Visa · Mastercard · Amex",
+      "continueShopping": "Continue shopping"
+    },
+    "toast": {
+      "viewCart": "View cart"
+    }
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import type { CartLine } from "@/features/cart/types/cart.types";
 import { formatCartAmount } from "@/features/cart/utils/cart.utils";
 
@@ -17,6 +18,7 @@ export function CartItem({
   onDecrement,
   onRemove,
 }: CartItemProps) {
+  const t = useTranslations("cart");
   const optionLabel = Object.values(line.selectedOptions)
     .filter(Boolean)
     .join(" · ");
@@ -55,7 +57,7 @@ export function CartItem({
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center font-normal text-[#605a54] disabled:cursor-default disabled:opacity-40"
-              aria-label={`Decrease quantity of ${line.name}`}
+              aria-label={t("item.decrease", { name: line.name })}
               disabled={line.quantity <= 1}
               onClick={() => onDecrement(line.id)}
             >
@@ -67,7 +69,7 @@ export function CartItem({
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center font-normal text-[#605a54]"
-              aria-label={`Increase quantity of ${line.name}`}
+              aria-label={t("item.increase", { name: line.name })}
               onClick={() => onIncrement(line.id)}
             >
               +
@@ -78,7 +80,7 @@ export function CartItem({
             className="cursor-pointer text-[11px] leading-[normal] font-normal text-[#605a54] uppercase underline"
             onClick={() => onRemove(line.id)}
           >
-            Remove
+            {t("item.remove")}
           </button>
         </div>
       </div>
