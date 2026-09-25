@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "shop": "تسوق",
+    "categories": "الفئات",
+    "contact": "تواصل معنا",
+    "faqs": "الأسئلة الشائعة"
+  },
+  "footer": {
+    "description": "دار عطور مستقلة تنسج حكايات فاخرة ببطء في زجاجات سائلة. تُعبّأ كل زجاجة يدويًا على دفعات صغيرة باستخدام نباتات مختارة من مصادر مستدامة.",
+    "social": {
+      "instagram": "إنستغرام",
+      "x": "إكس",
+      "facebook": "فيسبوك"
+    },
+    "collections": {
+      "title": "مجموعاتنا",
+      "laMaison": "لا ميزون",
+      "privateReserve": "المجموعة الخاصة",
+      "scentedCandles": "شموع عطرية",
+      "discoverySets": "مجموعات الاكتشاف"
+    },
+    "customerCare": {
+      "title": "خدمة العملاء",
+      "olfactoryConsultation": "استشارة عطرية",
+      "shippingReturns": "الشحن والاستبدال",
+      "atelierAppointments": "مواعيد المشغل",
+      "careGuide": "دليل العناية",
+      "faqs": "الأسئلة الشائعة",
+      "contact": "تواصل معنا"
+    },
+    "about": {
+      "title": "عن دارنا",
+      "philosophy": "فلسفتنا",
+      "sourcingStandards": "معايير اختيار المكونات",
+      "sustainability": "التزاماتنا بالاستدامة",
+      "journal": "المجلة"
+    },
+    "rightsReserved": "جميع الحقوق محفوظة.",
+    "securedCheckout": "دفع آمن عبر",
+    "paymentMethods": {
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "amex": "Amex"
+    }
+  },
+  "products": {
+    "title": "كل العطور",
+    "description": "تركيبات مختارة بعناية، صُممت لتملأ المكان بحضورها.",
+    "availableCount": "{count, plural, =0 {لا توجد عطور متاحة} =1 {عطر واحد متاح} other {# عطور متاحة}}",
+    "loading": "جارٍ تحميل العطور...",
+    "noResults": "لم نعثر على عطور مطابقة.",
+    "noImage": "لا توجد صورة",
+    "addToCart": "أضف إلى السلة +",
+    "search": {
+      "label": "بحث",
+      "placeholder": "ابحث عن العطور...",
+      "ariaLabel": "ابحث عن العطور",
+      "productsPlaceholder": "ابحث عن المنتجات",
+      "productsAriaLabel": "ابحث عن المنتجات"
+    },
+    "filters": {
+      "title": "تصفية",
+      "category": "الفئة",
+      "scentFamily": "العائلة العطرية",
+      "occasion": "المناسبة",
+      "priceRange": "نطاق السعر",
+      "minimumPrice": "الحد الأدنى للسعر",
+      "maximumPrice": "الحد الأقصى للسعر"
+    },
+    "categories": {
+      "pureExtractions": "خلاصات نقية",
+      "privateReserve": "المجموعة الخاصة",
+      "atelierOils": "زيوت الأتيليه",
+      "discoveryVault": "خزنة الاكتشاف"
+    },
+    "scentFamilies": {
+      "floral": "زهري",
+      "woody": "خشبي",
+      "oriental": "شرقي",
+      "fresh": "منعش"
+    },
+    "occasions": {
+      "personalUse": "استخدام شخصي",
+      "wedding": "زفاف",
+      "giftSets": "مجموعات هدايا",
+      "birthday": "عيد ميلاد"
+    },
+    "sort": {
+      "label": "ترتيب حسب:",
+      "priceHighToLow": "السعر: من الأعلى إلى الأقل",
+      "priceLowToHigh": "السعر: من الأقل إلى الأعلى",
+      "nameAToZ": "الاسم: من أ إلى ي",
+      "nameZToA": "الاسم: من ي إلى أ"
+    },
+    "pagination": {
+      "previous": "الصفحة السابقة",
+      "next": "الصفحة التالية",
+      "pageOf": "صفحة {page} من {pageCount}"
+    },
+    "breadcrumb": {
+      "label": "مسار التنقل",
+      "home": "الرئيسية",
+      "shop": "المتجر"
+    }
+  },
+  "productDetail": {
+    "scentFamily": "العائلة العطرية",
+    "occasion": "المناسبة",
+    "availableInAtelier": "متوفر في الأتيليه",
+    "addToCart": "أضف إلى السلة",
+    "options": {
+      "selectVolume": "اختر الحجم"
+    },
+    "breadcrumb": {
+      "label": "مسار التنقل",
+      "home": "الرئيسية",
+      "shop": "المتجر",
+      "fragrances": "العطور"
+    },
+    "giftWrap": {
+      "title": "تغليف هدايا فاخر مجانًا",
+      "description": "يُغلّف داخل علبة من ورق الكتان مع ختم شمعي مخصص.",
+      "ariaLabel": "تغليف هدايا فاخر مجانًا",
+      "cartOption": "التغليف",
+      "cartValue": "تغليف هدايا فاخر"
+    },
+    "quantity": {
+      "decrease": "تقليل الكمية",
+      "increase": "زيادة الكمية"
+    },
+    "sections": {
+      "scentAnatomy": "تركيبة العطر",
+      "notes": "النوتات العطرية"
+    },
+    "related": {
+      "title": "رفقاء العطر",
+      "subtitle": "عطور تنتمي إلى الذوق الرفيع نفسه",
+      "loading": "جارٍ تحميل العطور..."
+    },
+    "status": {
+      "loading": "جارٍ تحميل المنتج...",
+      "notFound": "لم يتم العثور على المنتج."
+    }
+  }
+}

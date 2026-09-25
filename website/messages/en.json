@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "categories": "Categories",
+    "contact": "Contact",
+    "faqs": "FAQs"
+  },
+  "footer": {
+    "description": "An independent olfactory house cultivating slow-luxury liquid narratives. Every bottle is hand-poured in small batches using sustainably sourced botanicals.",
+    "social": {
+      "instagram": "Instagram",
+      "x": "X",
+      "facebook": "Facebook"
+    },
+    "collections": {
+      "title": "Collections",
+      "laMaison": "La Maison",
+      "privateReserve": "Private Reserve",
+      "scentedCandles": "Scented Candles",
+      "discoverySets": "Discovery Sets"
+    },
+    "customerCare": {
+      "title": "Customer Care",
+      "olfactoryConsultation": "Olfactory Consultation",
+      "shippingReturns": "Shipping & Returns",
+      "atelierAppointments": "Atelier Appointments",
+      "careGuide": "Care Guide",
+      "faqs": "FAQs",
+      "contact": "Contact"
+    },
+    "about": {
+      "title": "About Us",
+      "philosophy": "Our Philosophy",
+      "sourcingStandards": "Sourcing Standards",
+      "sustainability": "Sustainability Commitments",
+      "journal": "Journal"
+    },
+    "rightsReserved": "All rights reserved.",
+    "securedCheckout": "Secured checkout via",
+    "paymentMethods": {
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "amex": "Amex"
+    }
+  },
+  "products": {
+    "title": "All Fragrances",
+    "description": "Cultivated formulations curated to command atmospheric space.",
+    "availableCount": "{count, plural, =0 {No fragrances available} =1 {1 fragrance available} other {# fragrances available}}",
+    "loading": "Loading products...",
+    "noResults": "No products found.",
+    "noImage": "No image",
+    "addToCart": "Add to Cart +",
+    "search": {
+      "label": "Search",
+      "placeholder": "Search fragrances...",
+      "ariaLabel": "Search fragrances",
+      "productsPlaceholder": "Search products",
+      "productsAriaLabel": "Search products"
+    },
+    "filters": {
+      "title": "Filters",
+      "category": "Category",
+      "scentFamily": "Scent Family",
+      "occasion": "Occasion",
+      "priceRange": "Price Range",
+      "minimumPrice": "Minimum price",
+      "maximumPrice": "Maximum price"
+    },
+    "categories": {
+      "pureExtractions": "Pure Extractions",
+      "privateReserve": "Private Reserve",
+      "atelierOils": "Atelier Oils",
+      "discoveryVault": "Discovery Vault"
+    },
+    "scentFamilies": {
+      "floral": "Floral",
+      "woody": "Woody",
+      "oriental": "Oriental",
+      "fresh": "Fresh"
+    },
+    "occasions": {
+      "personalUse": "Personal Use",
+      "wedding": "Wedding",
+      "giftSets": "Gift Sets",
+      "birthday": "Birthday"
+    },
+    "sort": {
+      "label": "Sort by:",
+      "priceHighToLow": "Price: High to Low",
+      "priceLowToHigh": "Price: Low to High",
+      "nameAToZ": "Name: A to Z",
+      "nameZToA": "Name: Z to A"
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "pageOf": "Page {page} of {pageCount}"
+    },
+    "breadcrumb": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "shop": "Shop"
+    }
+  },
+  "productDetail": {
+    "scentFamily": "Scent Family",
+    "occasion": "Occasion",
+    "availableInAtelier": "Available in Atelier",
+    "addToCart": "Add to Cart",
+    "options": {
+      "selectVolume": "Select Volume"
+    },
+    "breadcrumb": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "shop": "Shop",
+      "fragrances": "Fragrances"
+    },
+    "giftWrap": {
+      "title": "Complimentary Signature Gift Wrapping",
+      "description": "Encased in a linen paper box with a custom wax seal stamp.",
+      "ariaLabel": "Complimentary signature gift wrapping",
+      "cartOption": "Wrapping",
+      "cartValue": "Signature gift wrapping"
+    },
+    "quantity": {
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity"
+    },
+    "sections": {
+      "scentAnatomy": "Scent Anatomy",
+      "notes": "Notes"
+    },
+    "related": {
+      "title": "Olfactory Companions",
+      "subtitle": "Fragrances of synonymous sophistication",
+      "loading": "Loading fragrances..."
+    },
+    "status": {
+      "loading": "Loading product...",
+      "notFound": "Product not found."
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { ProductDetailsWithCart } from "@/app/products/[productId]/product-details-with-cart";
+import { ProductDetailsWithCart } from "./product-details-with-cart";
 
 export default async function ProductDetailsRoute({
   params,

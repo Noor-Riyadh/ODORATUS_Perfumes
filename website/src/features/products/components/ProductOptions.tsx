@@ -56,14 +56,20 @@ export function ProductOptions({
                   onClick={() => onChange(group.id, choice.id)}
                 >
                   <span
+                    dir="ltr"
+                    style={{ unicodeBidi: "isolate" }}
                     className={cn(
-                      "text-[14px] leading-[normal] text-[#1a1a1a]",
+                      "text-[14px] leading-[normal] text-left text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate]",
                       isSelected ? "font-bold" : "font-medium",
                     )}
                   >
                     {choice.label}
                   </span>
-                  <span className="text-[11px] leading-[normal] font-normal text-[#605a54]">
+                  <span
+                    dir="ltr"
+                    style={{ unicodeBidi: "isolate" }}
+                    className="text-[11px] leading-[normal] font-normal text-left text-[#605a54] [direction:ltr] [unicode-bidi:isolate]"
+                  >
                     {formatWholePrice(choice.price)}
                   </span>
                 </button>

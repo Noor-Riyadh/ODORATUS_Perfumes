@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { memo, useEffect, useMemo, useState, type ReactNode } from "react";
 import { ProductCard } from "@/features/products/components/ProductCard";
 import { ProductDetails } from "@/features/products/components/ProductDetails";
@@ -14,6 +15,8 @@ import { useProduct } from "@/features/products/hooks/useProduct";
 import { useProducts } from "@/features/products/hooks/useProducts";
 import { productPaths } from "@/features/products/paths";
 import type { Product } from "@/features/products/types/product.types";
+import { WishlistButton } from "@/features/wishlist";
+import { ProductRatingSummary, ReviewsList } from "@/features/reviews";
 import { cn } from "@/lib/utils/cn";
 
 const VOLUME_PRESETS = [
@@ -34,13 +37,13 @@ type ProductDetailsPageProps = {
   actions?: (context: ProductDetailsActionsContext) => ReactNode;
 };
 
-function volumeGroups(product: Product): VolumeGroup[] {
+function volumeGroups(product: Product, selectVolumeLabel: string): VolumeGroup[] {
   const configured = product.options.filter((option) => option.values.length > 0);
 
   if (configured.length > 0) {
     return configured.map((option) => ({
       id: option.id,
-      label: /size|volume/i.test(option.name) ? "Select Volume" : option.name,
+      label: /size|volume/i.test(option.name) ? selectVolumeLabel : option.name,
       choices: option.values.map((value) => ({
         id: value,
         label: value,
@@ -52,7 +55,7 @@ function volumeGroups(product: Product): VolumeGroup[] {
   return [
     {
       id: "volume",
-      label: "Select Volume",
+      label: selectVolumeLabel,
       choices: VOLUME_PRESETS.map((preset) => ({
         id: preset.id,
         label: preset.label,
@@ -63,15 +66,16 @@ function volumeGroups(product: Product): VolumeGroup[] {
 }
 
 function ProductBreadcrumb({ name }: { name: string }) {
+  const t = useTranslations("productDetail");
   const crumbs = [
-    { label: "Home", href: "/" },
-    { label: "Shop", href: productPaths.list },
-    { label: "Fragrances", href: productPaths.list },
+    { label: t("breadcrumb.home"), href: "/" },
+    { label: t("breadcrumb.shop"), href: productPaths.list },
+    { label: t("breadcrumb.fragrances"), href: productPaths.list },
   ];
 
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label={t("breadcrumb.label")}
       className="flex flex-wrap items-center gap-2 px-4 py-6 sm:px-6 md:px-10 lg:px-20"
     >
       {crumbs.map((crumb) => (
@@ -85,7 +89,11 @@ function ProductBreadcrumb({ name }: { name: string }) {
           <img src="/icons/chevron-right.svg" alt="" width={10} height={10} />
         </span>
       ))}
-      <span className="text-[12px] leading-[normal] font-semibold whitespace-nowrap text-[#1a1a1a]">
+      <span
+        dir="ltr"
+        style={{ unicodeBidi: "isolate" }}
+        className="text-[12px] leading-[normal] font-semibold whitespace-nowrap text-left text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate]"
+      >
         {name}
       </span>
     </nav>
@@ -99,12 +107,14 @@ function GiftWrapSwitch({
   enabled: boolean;
   onChange: (enabled: boolean) => void;
 }) {
+  const t = useTranslations("productDetail");
+
   return (
     <button
       type="button"
       role="switch"
       aria-checked={enabled}
-      aria-label="Complimentary signature gift wrapping"
+      aria-label={t("giftWrap.ariaLabel")}
       className={cn(
         "relative h-6 w-11 shrink-0 rounded-full",
         enabled ? "bg-[#c5a880]" : "bg-[#ebe6de]",
@@ -128,18 +138,20 @@ const RelatedProducts = memo(function RelatedProducts({
   products: Product[];
   isLoading: boolean;
 }) {
+  const t = useTranslations("productDetail");
+
   return (
     <section className="flex flex-col items-start gap-8 bg-[#f4f0eb] px-4 py-16 sm:px-6 md:px-10 lg:gap-12 lg:px-20 lg:py-[100px]">
       <div className="flex w-full flex-col items-center gap-3 text-center">
         <h2 className="w-full font-[family-name:var(--font-instrument-serif)] text-[36px] leading-[normal] text-[#1a1a1a] sm:text-[48px]">
-          Olfactory Companions
+          {t("related.title")}
         </h2>
         <p className="w-full text-[14px] leading-[normal] font-normal text-[#605a54]">
-          FRAGRANCES OF SYNONYMOUS SOPHISTICATION
+          {t("related.subtitle")}
         </p>
       </div>
       {isLoading ? (
-        <p className="text-sm text-[#605a54]">Loading fragrances...</p>
+        <p className="text-sm text-[#605a54]">{t("related.loading")}</p>
       ) : (
         <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {products.map((item) => (
@@ -155,6 +167,8 @@ export function ProductDetailsPage({
   productId,
   actions,
 }: ProductDetailsPageProps) {
+  const t = useTranslations("productDetail");
+
   const productQuery = useProduct(productId);
   const relatedQuery = useProducts({ page: 1, pageSize: 50 });
   const product = productQuery.data;
@@ -171,8 +185,8 @@ export function ProductDetailsPage({
   }, [productId]);
 
   const groups = useMemo(
-    () => (product ? volumeGroups(product) : []),
-    [product],
+    () => (product ? volumeGroups(product, t("options.selectVolume")) : []),
+    [product, t],
   );
 
   const resolvedOptions = useMemo(() => {
@@ -205,7 +219,7 @@ export function ProductDetailsPage({
     );
 
     if (giftWrap) {
-      options.Wrapping = "Signature gift wrapping";
+      options[t("giftWrap.cartOption")] = t("giftWrap.cartValue");
     }
 
     return options;
@@ -238,7 +252,7 @@ export function ProductDetailsPage({
   if (productQuery.isLoading) {
     return (
       <p className="px-4 py-10 text-sm text-[#605a54] lg:px-20">
-        Loading product...
+        {t("status.loading")}
       </p>
     );
   }
@@ -246,7 +260,7 @@ export function ProductDetailsPage({
   if (!product) {
     return (
       <p className="px-4 py-10 text-sm text-[#605a54] lg:px-20">
-        Product not found.
+        {t("status.notFound")}
       </p>
     );
   }
@@ -257,7 +271,13 @@ export function ProductDetailsPage({
       <div className="flex flex-col items-start gap-10 px-4 pb-16 sm:px-6 md:px-10 lg:flex-row lg:gap-16 lg:px-20 lg:pb-[100px]">
         <ProductImages product={product} />
         <div className="flex w-full shrink-0 flex-col items-start gap-8 lg:w-[560px]">
-          <ProductDetails product={product} price={unitPrice} />
+          <div className="flex w-full items-start justify-between gap-4">
+            <div className="flex min-w-0 flex-1 flex-col gap-3">
+              <ProductDetails product={product} price={unitPrice} />
+              <ProductRatingSummary productId={product.id} />
+            </div>
+            <WishlistButton product={product} />
+          </div>
           <div className="h-px w-full bg-[#ebe6de]" />
           <ProductOptions
             groups={groups}
@@ -272,10 +292,10 @@ export function ProductDetailsPage({
           <div className="flex w-full items-center justify-between gap-4 rounded-md bg-[#f4f0eb] p-5">
             <div className="flex max-w-[380px] flex-col items-start gap-1">
               <p className="text-[13px] leading-[normal] font-semibold text-[#1a1a1a]">
-                Complimentary Signature Gift Wrapping
+                {t("giftWrap.title")}
               </p>
               <p className="text-[12px] leading-[normal] font-normal text-[#605a54]">
-                Encased in linen paper box with custom wax seal stamp.
+                {t("giftWrap.description")}
               </p>
             </div>
             <GiftWrapSwitch enabled={giftWrap} onChange={setGiftWrap} />
@@ -284,7 +304,7 @@ export function ProductDetailsPage({
             <div className="flex shrink-0 items-center rounded border border-[#ebe6de]">
               <button
                 type="button"
-                aria-label="Decrease quantity"
+                aria-label={t("quantity.decrease")}
                 className="inline-flex h-12 w-11 items-center justify-center text-[16px] leading-none font-normal text-[#605a54] disabled:opacity-40"
                 disabled={quantity <= 1}
                 onClick={() =>
@@ -298,7 +318,7 @@ export function ProductDetailsPage({
               </span>
               <button
                 type="button"
-                aria-label="Increase quantity"
+                aria-label={t("quantity.increase")}
                 className="inline-flex h-12 w-11 items-center justify-center text-[16px] leading-none font-normal text-[#605a54]"
                 onClick={() => setQuantity((current) => current + 1)}
               >
@@ -317,18 +337,26 @@ export function ProductDetailsPage({
           <div className="h-px w-full bg-[#ebe6de]" />
           <div className="flex w-full flex-col items-start gap-5">
             <h2 className="font-[family-name:var(--font-instrument-serif)] text-[28px] leading-[normal] text-[#1a1a1a] sm:text-[32px]">
-              Scent Anatomy
+              {t("sections.scentAnatomy")}
             </h2>
-            <p className="text-[14px] leading-[1.6] font-normal text-[#605a54]">
+            <p
+              dir="ltr"
+              style={{ unicodeBidi: "isolate" }}
+              className="text-[14px] leading-[1.6] font-normal text-left text-[#605a54] [direction:ltr] [unicode-bidi:isolate]"
+            >
               {product.description}
             </p>
             {product.notes ? (
               <div className="flex w-full flex-col gap-3">
                 <div className="flex flex-col gap-1 border-b border-[#ebe6de] py-2 sm:flex-row sm:items-start sm:justify-between">
                   <p className="text-[12px] leading-[normal] font-bold text-[#1a1a1a] uppercase">
-                    Notes
+                    {t("sections.notes")}
                   </p>
-                  <p className="text-[13px] leading-[normal] font-normal text-[#605a54] sm:text-right">
+                  <p
+                    dir="ltr"
+                    style={{ unicodeBidi: "isolate" }}
+                    className="text-[13px] leading-[normal] font-normal text-left text-[#605a54] [direction:ltr] [unicode-bidi:isolate] sm:text-right"
+                  >
                     {product.notes}
                   </p>
                 </div>
@@ -337,6 +365,7 @@ export function ProductDetailsPage({
           </div>
         </div>
       </div>
+      <ReviewsList productId={product.id} />
       <RelatedProducts products={related} isLoading={relatedQuery.isLoading} />
     </article>
   );

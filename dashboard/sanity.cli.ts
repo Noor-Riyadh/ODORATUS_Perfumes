@@ -2,7 +2,7 @@ import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
-    projectId: 'DIGITERA-PROJECT-ID',
+    projectId: '3qbfjk9s',
     dataset: 'production',
   },
   typegen: {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useProductSort } from "@/features/products/hooks/useProductSort";
 import type {
   ProductListQuery,
@@ -11,26 +12,27 @@ type ProductSortControlProps = {
   availableCount: number;
 };
 
-const SORT_OPTIONS: Array<{ value: ProductSort; label: string }> = [
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "name-asc", label: "Name: A to Z" },
-  { value: "name-desc", label: "Name: Z to A" },
+const SORT_OPTIONS: Array<{ value: ProductSort; key: string }> = [
+  { value: "price-desc", key: "sort.priceHighToLow" },
+  { value: "price-asc", key: "sort.priceLowToHigh" },
+  { value: "name-asc", key: "sort.nameAToZ" },
+  { value: "name-desc", key: "sort.nameZToA" },
 ];
 
 export function ProductSortControl({
   query,
   availableCount,
 }: ProductSortControlProps) {
+  const t = useTranslations("products");
   const { sort, setSort } = useProductSort(query);
   return (
     <div className="flex w-full flex-col gap-3 border-b border-solid border-[#ebe6de] pb-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
       <p className="text-[12px] font-normal uppercase text-[#605a54]">
-        {availableCount} fragrances available
+        {t("availableCount", { count: availableCount })}
       </p>
       <label className="relative flex shrink-0 items-center gap-2">
         <span className="text-[12px] font-semibold whitespace-nowrap text-[#1a1a1a]">
-          Sort by:
+          {t("sort.label")}
         </span>
         <select
           aria-label="Sort products"
@@ -40,7 +42,7 @@ export function ProductSortControl({
         >
           {SORT_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>
-              {option.label}
+              {t(option.key)}
             </option>
           ))}
         </select>

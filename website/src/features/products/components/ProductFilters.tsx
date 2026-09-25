@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { useProductFilters } from "@/features/products/hooks/useProductFilters";
 import type { ProductListQuery } from "@/features/products/types/product.types";
@@ -12,39 +13,41 @@ import { cn } from "@/lib/utils/cn";
 
 type FilterOption = {
   id: string;
-  label: string;
+  key: string;
 };
 
 type CheckboxTone = "gold" | "ink";
 
 const CATEGORIES: FilterOption[] = [
-  { id: "pure-extractions", label: "Pure Extractions" },
-  { id: "private-reserve", label: "Private Reserve" },
-  { id: "atelier-oils", label: "Atelier Oils" },
-  { id: "discovery-vault", label: "Discovery Vault" },
+  { id: "pure-extractions", key: "categories.pureExtractions" },
+  { id: "private-reserve", key: "categories.privateReserve" },
+  { id: "atelier-oils", key: "categories.atelierOils" },
+  { id: "discovery-vault", key: "categories.discoveryVault" },
 ];
 
 const SCENT_FAMILIES: FilterOption[] = [
-  { id: "floral", label: "Floral" },
-  { id: "woody", label: "Woody" },
-  { id: "oriental", label: "Oriental" },
-  { id: "fresh", label: "Fresh" },
+  { id: "floral", key: "scentFamilies.floral" },
+  { id: "woody", key: "scentFamilies.woody" },
+  { id: "oriental", key: "scentFamilies.oriental" },
+  { id: "fresh", key: "scentFamilies.fresh" },
 ];
 
 const OCCASIONS: FilterOption[] = [
-  { id: "personal-use", label: "Personal Use" },
-  { id: "wedding", label: "Wedding" },
-  { id: "gift-sets", label: "Gift Sets" },
-  { id: "birthday", label: "Birthday" },
+  { id: "personal-use", key: "occasions.personalUse" },
+  { id: "wedding", key: "occasions.wedding" },
+  { id: "gift-sets", key: "occasions.giftSets" },
+  { id: "birthday", key: "occasions.birthday" },
 ];
 
 function FilterCheckbox({
   option,
+  label,
   checked,
   tone,
   onChange,
 }: {
   option: FilterOption;
+  label: string;
   checked: boolean;
   tone: CheckboxTone;
   onChange: () => void;
@@ -66,7 +69,7 @@ function FilterCheckbox({
         )}
       />
       <span className="text-[13px] font-normal whitespace-nowrap text-[#1a1a1a]">
-        {option.label}
+        {label}
       </span>
     </label>
   );
@@ -75,12 +78,14 @@ function FilterCheckbox({
 function FilterBlock({
   title,
   options,
+  translate,
   selected,
   tone,
   onToggle,
 }: {
   title: string;
   options: FilterOption[];
+  translate: (key: string) => string;
   selected: string[];
   tone: CheckboxTone;
   onToggle: (id: string) => void;
@@ -95,6 +100,7 @@ function FilterBlock({
           <FilterCheckbox
             key={option.id}
             option={option}
+            label={translate(option.key)}
             tone={tone}
             checked={selected.includes(option.id)}
             onChange={() => onToggle(option.id)}
@@ -108,9 +114,13 @@ function FilterBlock({
 function FilterSearch({
   value,
   onSearch,
+  placeholder,
+  ariaLabel,
 }: {
   value: string;
   onSearch: (value: string) => void;
+  placeholder: string;
+  ariaLabel: string;
 }) {
   const [draft, setDraft] = useState(value);
   const onSearchRef = useRef(onSearch);
@@ -156,8 +166,8 @@ function FilterSearch({
       <input
         name="search"
         value={draft}
-        placeholder="Search fragrances..."
-        aria-label="Search fragrances"
+        placeholder={placeholder}
+        aria-label={ariaLabel}
         className="w-full bg-transparent text-[12px] leading-[normal] text-[#1a1a1a] outline-none placeholder:text-[#605a54]"
         onChange={(event) => setDraft(event.target.value)}
       />
@@ -205,6 +215,7 @@ function PriceRangeFilter({
   maxPrice: number;
   onChange: (minPrice: number, maxPrice: number) => void;
 }) {
+  const t = useTranslations("products");
   const minInputRef = useRef<HTMLInputElement>(null);
   const maxInputRef = useRef<HTMLInputElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
@@ -277,7 +288,7 @@ function PriceRangeFilter({
   return (
     <div className="flex w-full flex-col items-start gap-4">
       <p className="text-[12px] font-bold uppercase whitespace-nowrap text-[#1a1a1a]">
-        Price Range
+        {t("filters.priceRange")}
       </p>
       <div className="flex w-full max-w-[260px] flex-col items-start gap-3 lg:max-w-none">
         <div className="relative flex h-4 w-full items-center">
@@ -294,7 +305,7 @@ function PriceRangeFilter({
             max={PRICE_FILTER_MAX}
             step={PRICE_STEP}
             defaultValue={minPrice}
-            aria-label="Minimum price"
+            aria-label={t("filters.minimumPrice")}
             className={cn(rangeInputClassName, "price-range-input z-20")}
             style={{ transform: "translateY(calc(-50% - 8px))" }}
             onPointerDown={beginDrag}
@@ -323,7 +334,7 @@ function PriceRangeFilter({
             max={PRICE_FILTER_MAX}
             step={PRICE_STEP}
             defaultValue={maxPrice}
-            aria-label="Maximum price"
+            aria-label={t("filters.maximumPrice")}
             className={cn(rangeInputClassName, "price-range-input z-30")}
             style={{ transform: "translateY(calc(-50% - 8px))" }}
             onPointerDown={beginDrag}
@@ -346,7 +357,10 @@ function PriceRangeFilter({
             onKeyUp={commit}
           />
         </div>
-        <div className="flex w-full items-start justify-between text-[12px] font-normal whitespace-nowrap text-[#1a1a1a]">
+        <div
+          dir="ltr"
+          className="flex w-full items-start justify-between text-[12px] font-normal whitespace-nowrap text-[#1a1a1a] [direction:ltr]"
+        >
           <p ref={minLabelRef}>{formatWholePrice(minPrice)}</p>
           <p ref={maxLabelRef}>{formatWholePrice(maxPrice)}</p>
         </div>
@@ -356,6 +370,7 @@ function PriceRangeFilter({
 }
 
 export function ProductFilters({ query }: { query: ProductListQuery }) {
+  const t = useTranslations("products");
   const [open, setOpen] = useState(false);
   const {
     search,
@@ -387,7 +402,7 @@ export function ProductFilters({ query }: { query: ProductListQuery }) {
         onClick={() => setOpen((current) => !current)}
       >
         <span>
-          Filters{selectedCount > 0 ? ` (${selectedCount})` : ""}
+          {t("filters.title")}{selectedCount > 0 ? ` (${selectedCount})` : ""}
         </span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -405,27 +420,35 @@ export function ProductFilters({ query }: { query: ProductListQuery }) {
           "lg:mt-0 lg:flex",
         )}
       >
-        <FilterSearch value={search} onSearch={setSearch} />
+        <FilterSearch
+          value={search}
+          onSearch={setSearch}
+          placeholder={t("search.placeholder")}
+          ariaLabel={t("search.ariaLabel")}
+        />
         <div className="h-px w-full bg-[#ebe6de]" />
         <FilterBlock
-          title="Category"
+          title={t("filters.category")}
           options={CATEGORIES}
+          translate={t}
           selected={categories}
           tone="gold"
           onToggle={toggleCategory}
         />
         <div className="h-px w-full bg-[#ebe6de]" />
         <FilterBlock
-          title="Scent Family"
+          title={t("filters.scentFamily")}
           options={SCENT_FAMILIES}
+          translate={t}
           selected={scentFamilies}
           tone="ink"
           onToggle={toggleScentFamily}
         />
         <div className="h-px w-full bg-[#ebe6de]" />
         <FilterBlock
-          title="Occasion"
+          title={t("filters.occasion")}
           options={OCCASIONS}
+          translate={t}
           selected={occasions}
           tone="ink"
           onToggle={toggleOccasion}

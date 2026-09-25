@@ -1,0 +1,168 @@
+"use client";
+
+import Link from "next/link";
+import { useState, type FormEvent } from "react";
+import { useToastStore } from "@/features/cart/store/toast.store";
+
+const WHATSAPP_ORDER_URL = "https://wa.me/201025598592";
+const PHONE_NUMBER = "+20 10 2559 8592";
+const PHONE_URL = "tel:+201025598592";
+const EMAIL_ADDRESS = "hello@odoratus.com";
+const fieldClassName =
+  "w-full rounded border border-[#ebe6de] bg-white px-4 py-3 font-[family-name:var(--font-manrope)] text-[14px] text-[#1a1a1a] outline-none placeholder:text-[#605a54] focus:border-[#1a1a1a]";
+
+export function ContactPage() {
+  const showToast = useToastStore((state) => state.show);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  function updateField(field: keyof typeof form, value: string) {
+    setForm((current) => ({ ...current, [field]: value }));
+  }
+
+  function submitForm(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    showToast("Your message was sent successfully");
+    setForm({ name: "", email: "", subject: "", message: "" });
+  }
+
+  return (
+    <main className="bg-[#faf8f5] px-4 py-16 text-[#1a1a1a] sm:px-6 md:px-10 lg:px-20 lg:py-[100px]">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-16">
+        <header className="flex max-w-3xl flex-col gap-4">
+          <p className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.12em] text-[#c5a880] uppercase">
+            Customer Care
+          </p>
+          <h1 className="font-[family-name:var(--font-instrument-serif)] text-[52px] leading-[0.95] text-[#1a1a1a] sm:text-[76px]">
+            Get in Touch
+          </h1>
+          <p className="font-[family-name:var(--font-manrope)] text-[15px] leading-[1.7] text-[#605a54]">
+            We are here to help you discover your signature scent, answer
+            questions, and make every Odoratus experience feel personal.
+          </p>
+        </header>
+
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <section className="flex flex-col gap-4" aria-label="Contact methods">
+            <h2 className="font-[family-name:var(--font-instrument-serif)] text-[34px] text-[#1a1a1a]">
+              Contact methods
+            </h2>
+            <div className="flex flex-col">
+              <Link
+                href={WHATSAPP_ORDER_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex flex-col gap-1 border-b border-[#ebe6de] py-5"
+              >
+                <span className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.1em] text-[#c5a880] uppercase">
+                  WhatsApp
+                </span>
+                <span className="font-[family-name:var(--font-manrope)] text-[15px] text-[#1a1a1a]">
+                  Chat with our fragrance team
+                </span>
+              </Link>
+              <Link
+                href={PHONE_URL}
+                className="flex flex-col gap-1 border-b border-[#ebe6de] py-5"
+              >
+                <span className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.1em] text-[#c5a880] uppercase">
+                  Phone
+                </span>
+                <span className="font-[family-name:var(--font-manrope)] text-[15px] text-[#1a1a1a]">
+                  {PHONE_NUMBER}
+                </span>
+              </Link>
+              <Link
+                href={`mailto:${EMAIL_ADDRESS}`}
+                className="flex flex-col gap-1 border-b border-[#ebe6de] py-5"
+              >
+                <span className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.1em] text-[#c5a880] uppercase">
+                  Email
+                </span>
+                <span className="font-[family-name:var(--font-manrope)] text-[15px] text-[#1a1a1a]">
+                  {EMAIL_ADDRESS}
+                </span>
+              </Link>
+              <p className="py-5 font-[family-name:var(--font-manrope)] text-[13px] leading-[1.6] text-[#605a54]">
+                We usually respond within one business day.
+              </p>
+            </div>
+          </section>
+
+          <form
+            onSubmit={submitForm}
+            className="flex flex-col gap-5 rounded-lg bg-[#f4f0eb] p-6 sm:p-8"
+          >
+            <h2 className="font-[family-name:var(--font-instrument-serif)] text-[34px] text-[#1a1a1a]">
+              Send a message
+            </h2>
+            <label className="flex flex-col gap-2">
+              <span className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.08em] text-[#1a1a1a] uppercase">
+                Name
+              </span>
+              <input
+                required
+                value={form.name}
+                onChange={(event) => updateField("name", event.target.value)}
+                className={fieldClassName}
+                type="text"
+                name="name"
+                autoComplete="name"
+              />
+            </label>
+            <label className="flex flex-col gap-2">
+              <span className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.08em] text-[#1a1a1a] uppercase">
+                Email
+              </span>
+              <input
+                required
+                value={form.email}
+                onChange={(event) => updateField("email", event.target.value)}
+                className={fieldClassName}
+                type="email"
+                name="email"
+                autoComplete="email"
+              />
+            </label>
+            <label className="flex flex-col gap-2">
+              <span className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.08em] text-[#1a1a1a] uppercase">
+                Subject
+              </span>
+              <input
+                required
+                value={form.subject}
+                onChange={(event) => updateField("subject", event.target.value)}
+                className={fieldClassName}
+                type="text"
+                name="subject"
+              />
+            </label>
+            <label className="flex flex-col gap-2">
+              <span className="font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.08em] text-[#1a1a1a] uppercase">
+                Message
+              </span>
+              <textarea
+                required
+                value={form.message}
+                onChange={(event) => updateField("message", event.target.value)}
+                className={`${fieldClassName} resize-none`}
+                name="message"
+                rows={6}
+              />
+            </label>
+            <button
+              type="submit"
+              className="self-start rounded bg-[#1a1a1a] px-7 py-3 font-[family-name:var(--font-manrope)] text-[12px] font-bold tracking-[0.1em] text-[#faf8f5] uppercase transition-colors hover:bg-[#c5a880]"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  );
+}

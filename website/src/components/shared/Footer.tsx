@@ -1,33 +1,39 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 const SOCIALS = [
-  { href: "https://instagram.com", label: "Instagram", icon: "/icons/instagram.svg" },
-  { href: "https://x.com", label: "X", icon: "/icons/x.svg" },
-  { href: "https://facebook.com", label: "Facebook", icon: "/icons/facebook.svg" },
+  { href: "https://instagram.com", key: "instagram", icon: "/icons/instagram.svg" },
+  { href: "https://x.com", key: "x", icon: "/icons/x.svg" },
+  { href: "https://facebook.com", key: "facebook", icon: "/icons/facebook.svg" },
 ] as const;
 
 const COLUMNS = [
   {
-    title: "Collections",
-    links: ["La Maison", "Private Reserve", "Scented Candles", "Discovery Sets"],
-  },
-  {
-    title: "Customer Care",
+    title: "collections.title",
     links: [
-      "Olfactory Consultation",
-      "Shipping & Returns",
-      "Atelier Appointments",
-      "Care Guide",
+      "collections.laMaison",
+      "collections.privateReserve",
+      "collections.scentedCandles",
+      "collections.discoverySets",
     ],
   },
   {
-    title: "About Us",
+    title: "customerCare.title",
     links: [
-      "Our Philosophy",
-      "Sourcing Standards",
-      "Sustainability Commitments",
-      "Journal",
+      "customerCare.olfactoryConsultation",
+      "customerCare.shippingReturns",
+      "customerCare.atelierAppointments",
+      "customerCare.careGuide",
+    ],
+  },
+  {
+    title: "about.title",
+    links: [
+      "about.philosophy",
+      "about.sourcingStandards",
+      "about.sustainability",
+      "about.journal",
     ],
   },
 ] as const;
@@ -35,6 +41,8 @@ const COLUMNS = [
 const PAYMENT_METHODS = ["visa", "mastercard", "amex"] as const;
 
 export function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="bg-[#1a1a1a] px-4 pt-16 pb-8 text-white sm:px-6 md:px-10 lg:px-20 lg:pt-20 lg:pb-10">
       <div className="flex flex-col gap-12 lg:gap-16">
@@ -42,21 +50,24 @@ export function Footer() {
           <div className="flex w-full max-w-[400px] flex-col items-start gap-6">
             <Link
               href="/"
-              className="font-[family-name:var(--font-instrument-serif)] text-[32px] leading-[normal] tracking-[0.18em] text-white sm:text-[40px]"
+              dir="ltr"
+              className="font-[family-name:var(--font-instrument-serif)] text-[32px] leading-[normal] tracking-[0.18em] text-white [direction:ltr] [unicode-bidi:isolate] sm:text-[40px]"
             >
               ODORATUS
             </Link>
-            <p className="text-[14px] leading-[1.6] font-normal text-[#f2ede4] opacity-80">
-              An independent olfactory house cultivating slow-luxury liquid
-              narratives. Every bottle is hand-poured in small batches using
-              sustainably sourced botanicals.
+            <p
+              dir="ltr"
+              style={{ unicodeBidi: "isolate" }}
+              className="text-[14px] leading-[1.6] font-normal text-[#f2ede4] opacity-80 [direction:ltr] [unicode-bidi:isolate]"
+            >
+              {t("description")}
             </p>
             <div className="flex items-start gap-4">
               {SOCIALS.map((social) => (
                 <a
-                  key={social.label}
+                  key={social.key}
                   href={social.href}
-                  aria-label={social.label}
+                  aria-label={t(`social.${social.key}`)}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full bg-white/10 p-2"
@@ -73,16 +84,32 @@ export function Footer() {
                 className="flex w-full flex-col items-start gap-5 lg:w-[180px]"
               >
                 <p className="text-[12px] leading-[normal] font-bold text-[#c5a880] uppercase">
-                  {column.title}
+                  {t(column.title)}
                 </p>
                 {column.links.map((link) => (
                   <p
                     key={link}
                     className="text-[13px] leading-[normal] font-normal text-white opacity-70"
                   >
-                    {link}
+                    {t(link)}
                   </p>
                 ))}
+                {column.title === "customerCare.title" ? (
+                  <>
+                    <Link
+                      href="/faqs"
+                      className="text-[13px] leading-[normal] font-normal text-white opacity-70"
+                    >
+                      {t("customerCare.faqs")}
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="text-[13px] leading-[normal] font-normal text-white opacity-70"
+                    >
+                      {t("customerCare.contact")}
+                    </Link>
+                  </>
+                ) : null}
               </div>
             ))}
           </div>
@@ -91,18 +118,24 @@ export function Footer() {
           <div className="h-px w-full bg-white/13" />
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[12px] leading-[normal] font-normal whitespace-nowrap text-white opacity-50">
-              © 2026 Odoratus. All rights reserved.
+              <span
+                dir="ltr"
+                className="[direction:ltr] [unicode-bidi:isolate]"
+              >
+                © 2026 Odoratus.
+              </span>{" "}
+              {t("rightsReserved")}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <p className="text-[11px] leading-[normal] font-normal text-white uppercase opacity-40">
-                Secured checkout via
+                {t("securedCheckout")}
               </p>
               {PAYMENT_METHODS.map((method) => (
                 <span
                   key={method}
                   className="rounded border border-white/13 px-2 py-1 text-[9px] leading-[normal] font-semibold text-white uppercase opacity-60"
                 >
-                  {method}
+                  <span dir="ltr">{t(`paymentMethods.${method}`)}</span>
                 </span>
               ))}
             </div>

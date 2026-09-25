@@ -1,16 +1,21 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Suspense, useState, type FormEvent } from "react";
 import { CartNavLink } from "@/features/cart";
 import { productPaths } from "@/features/products";
+import { WishlistNavLink } from "@/features/wishlist";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { Link as LocaleLink } from "@/i18n/navigation";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: productPaths.list, label: "Shop" },
-  { href: productPaths.list, label: "Categories" },
+  { href: "/", label: "home" },
+  { href: productPaths.list, label: "shop" },
+  { href: "/categories", label: "categories" },
+  { href: "/contact", label: "contact" },
+  { href: "/faqs", label: "faqs" },
 ] as const;
 
 const searchFieldClassName =
@@ -56,7 +61,8 @@ function SearchForm({
         defaultValue={search}
         placeholder="Search fragrances..."
         aria-label="Search fragrances"
-        className={searchFieldClassName}
+        dir="ltr"
+        className={`${searchFieldClassName} [direction:ltr] [unicode-bidi:isolate]`}
       />
     </form>
   );
@@ -64,15 +70,22 @@ function SearchForm({
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const t = useTranslations("nav");
 
   return (
     <header className="sticky top-0 z-40 bg-[#faf8f5]">
       <div className="bg-[#1a1a1a] px-4 py-2.5 text-center lg:py-3">
         <p className="text-[9px] leading-[normal] font-normal text-white uppercase lg:text-[11px] lg:font-semibold">
-          <span className="lg:hidden">
+          <span
+            dir="ltr"
+            className="lg:hidden [direction:ltr] [unicode-bidi:isolate]"
+          >
             Complimentary gift wrapping over $150
           </span>
-          <span className="hidden lg:inline">
+          <span
+            dir="ltr"
+            className="hidden lg:inline [direction:ltr] [unicode-bidi:isolate]"
+          >
             Complimentary signature gift wrapping on all orders above $150
           </span>
         </p>
@@ -81,13 +94,13 @@ export function Header() {
         <div className="grid h-[68px] grid-cols-[1fr_auto_1fr] items-center px-5 lg:h-[90px] lg:px-20">
           <nav className="hidden items-center gap-10 justify-self-start lg:flex">
             {NAV_LINKS.map((link) => (
-              <Link
+              <LocaleLink
                 key={link.label}
                 href={link.href}
                 className="text-[13px] leading-[normal] font-medium text-[#605a54] uppercase"
               >
-                {link.label}
-              </Link>
+                {t(link.label)}
+              </LocaleLink>
             ))}
           </nav>
           <button
@@ -99,12 +112,13 @@ export function Header() {
           >
             <img src="/icons/menu.svg" alt="" width={22} height={22} />
           </button>
-          <Link
+          <LocaleLink
             href="/"
-            className="font-[family-name:var(--font-instrument-serif)] text-[25px] leading-[normal] text-[#1a1a1a] lg:text-[38px] lg:tracking-[0.18em] lg:-mr-[0.18em]"
+            dir="ltr"
+            className="font-[family-name:var(--font-instrument-serif)] text-[25px] leading-[normal] text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate] lg:text-[38px] lg:tracking-[0.18em] lg:-mr-[0.18em]"
           >
             ODORATUS
-          </Link>
+          </LocaleLink>
           <div className="flex items-center justify-self-end gap-7">
             <Suspense
               fallback={
@@ -114,14 +128,17 @@ export function Header() {
                     name="search"
                     placeholder="Search fragrances..."
                     aria-label="Search fragrances"
-                    className={searchFieldClassName}
+                    dir="ltr"
+                    className={`${searchFieldClassName} [direction:ltr] [unicode-bidi:isolate]`}
                   />
                 </div>
               }
             >
               <SearchForm className="hidden w-[200px] items-center gap-2 rounded-full border border-[#ebe6de] px-3 py-2 lg:flex" />
             </Suspense>
+            <WishlistNavLink />
             <CartNavLink />
+            <LanguageSwitcher />
           </div>
         </div>
         {menuOpen ? (
@@ -133,14 +150,14 @@ export function Header() {
               />
             </Suspense>
             {NAV_LINKS.map((link) => (
-              <Link
+              <LocaleLink
                 key={link.label}
                 href={link.href}
                 className="text-[13px] leading-[normal] font-medium text-[#605a54] uppercase"
                 onClick={() => setMenuOpen(false)}
               >
-                {link.label}
-              </Link>
+                {t(link.label)}
+              </LocaleLink>
             ))}
           </nav>
         ) : null}

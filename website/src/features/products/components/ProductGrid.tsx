@@ -1,5 +1,6 @@
 import { ProductCard } from "@/features/products/components/ProductCard";
 import type { Product } from "@/features/products/types/product.types";
+import { useTranslations } from "next-intl";
 
 type ProductGridProps = {
   products: Product[];
@@ -7,12 +8,14 @@ type ProductGridProps = {
 };
 
 export function ProductGrid({ products, isLoading = false }: ProductGridProps) {
+  const t = useTranslations("products");
+
   if (isLoading) {
-    return <p className="text-sm text-[#605a54]">Loading products...</p>;
+    return <p className="text-sm text-[#605a54]">{t("loading")}</p>;
   }
 
   if (products.length === 0) {
-    return <p className="text-sm text-[#605a54]">No products found.</p>;
+    return <p className="text-sm text-[#605a54]">{t("noResults")}</p>;
   }
 
   return (

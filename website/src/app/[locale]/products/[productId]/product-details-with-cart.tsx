@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { AddToCartButton } from "@/features/cart";
 import { ProductDetailsPage } from "@/features/products";
 import {
@@ -14,6 +15,8 @@ type ProductDetailsWithCartProps = {
 export function ProductDetailsWithCart({
   productId,
 }: ProductDetailsWithCartProps) {
+  const t = useTranslations("productDetail");
+
   return (
     <ProductDetailsPage
       productId={productId}
@@ -25,8 +28,9 @@ export function ProductDetailsWithCart({
           image={resolveProductImages(product)[0]}
           selectedOptions={selectedOptions}
           quantity={quantity}
-          label={`Add to Cart / ${formatWholePrice(unitPrice)}`}
-          className="flex w-full items-center justify-center rounded bg-[#1a1a1a] py-4 text-[13px] leading-[normal] font-bold text-white uppercase"
+          label={`${t("addToCart")} / ${formatWholePrice(unitPrice)}`}
+          dir="ltr"
+          className="flex w-full items-center justify-center rounded bg-[#1a1a1a] py-4 text-[13px] leading-[normal] font-bold text-white uppercase [direction:ltr] [unicode-bidi:isolate]"
         />
       )}
     />
