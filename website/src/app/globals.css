@@ -33,5 +33,9 @@ body {
 }
 
 html[dir="rtl"] {
-  font-size: 117%; /* 106.25% × 110% ≈ 117% — additional bump on top of the larger base */
+  font-size: 130%; /* 106.25% × 122% ≈ 130% — bumped further since Arabic still read small */
+  /* Many components hardcode font-[family-name:var(--font-manrope)] directly
+     on individual elements instead of inheriting from body, so redefining the
+     variable itself here is what actually makes every route pick up Arabic. */
+  --font-manrope: var(--font-ibm-plex-arabic);
 }
