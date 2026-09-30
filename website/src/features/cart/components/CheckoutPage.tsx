@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { cartPaths } from "@/features/cart/paths";
 import { useCart } from "@/features/cart/hooks/useCart";
@@ -71,6 +72,7 @@ function buildOrderMessage(input: {
 }
 
 export function CheckoutPage() {
+  const t = useTranslations("checkout");
   const { lines, total } = useCart();
   const delivery = getCartDelivery(lines);
   const orderTotal = total + delivery;
@@ -111,11 +113,11 @@ export function CheckoutPage() {
     <section className="bg-[#faf8f5] text-[#1a1a1a]">
       <nav aria-label="Breadcrumb" className="px-5 py-4 lg:px-20 lg:py-6">
         <p className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54]">
-          <Link href="/">Home</Link>
+          <Link href="/">{t("breadcrumb.home")}</Link>
           <span>{" / "}</span>
-          <Link href={cartPaths.cart}>Cart</Link>
+          <Link href={cartPaths.cart}>{t("breadcrumb.cart")}</Link>
           <span>{" / "}</span>
-          <span>Checkout</span>
+          <span>{t("breadcrumb.checkout")}</span>
         </p>
       </nav>
       <form
@@ -157,20 +159,20 @@ export function CheckoutPage() {
         <div className="flex min-w-0 flex-1 flex-col gap-7">
           <div className="flex flex-col gap-2">
             <h1 className="font-[family-name:var(--font-instrument-serif)] text-[calc(43px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] lg:text-[calc(56px*var(--fs-scale))]">
-              Checkout
+              {t("title")}
             </h1>
             <p className="text-[calc(14px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54]">
-              Complete your delivery details to place your order.
+              {t("subtitle")}
             </p>
           </div>
           <div className="flex flex-col gap-[18px]">
             <h2 className="font-[family-name:var(--font-instrument-serif)] text-[calc(30px*var(--fs-scale))] leading-[normal] text-[#1a1a1a]">
-              Delivery details
+              {t("delivery.title")}
             </h2>
             <div className="flex flex-col gap-4">
               <label className="flex flex-col gap-2">
                 <span className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-[#1a1a1a] uppercase">
-                  Recipient name
+                  {t("delivery.recipientName")}
                 </span>
                 <input
                   required
@@ -182,18 +184,19 @@ export function CheckoutPage() {
               <div className="flex flex-col gap-2">
                 <label className="flex flex-col gap-2" htmlFor="checkout-phone">
                   <span className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-[#1a1a1a] uppercase">
-                    Phone number
+                    {t("delivery.phoneNumber")}
                   </span>
                   <input
                     id="checkout-phone"
                     required
                     type="tel"
+                    dir="ltr"
                     value={phone}
                     onChange={(event) => setPhone(event.target.value)}
                     aria-describedby={
                       phoneVerified ? "phone-verified" : undefined
                     }
-                    className={cn(fieldClassName, "h-[52px]")}
+                    className={cn(fieldClassName, "h-[52px] [direction:ltr]")}
                   />
                 </label>
                 {phoneVerified ? (
@@ -201,13 +204,13 @@ export function CheckoutPage() {
                     id="phone-verified"
                     className="text-[calc(11px*var(--fs-scale))] leading-[normal] font-normal text-[#2f7a55]"
                   >
-                    ✓ Phone number verified
+                    ✓ {t("delivery.phoneVerified")}
                   </p>
                 ) : null}
               </div>
               <label className="flex flex-col gap-2">
                 <span className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-[#1a1a1a] uppercase">
-                  Delivery address
+                  {t("delivery.address")}
                 </span>
                 <input
                   required
@@ -218,7 +221,7 @@ export function CheckoutPage() {
               </label>
               <label className="flex flex-col gap-2">
                 <span className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-[#1a1a1a] uppercase">
-                  City
+                  {t("delivery.city")}
                 </span>
                 <input
                   required
@@ -229,7 +232,7 @@ export function CheckoutPage() {
               </label>
               <label className="flex flex-col gap-2">
                 <span className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-[#1a1a1a] uppercase">
-                  Postal code
+                  {t("delivery.postalCode")}
                 </span>
                 <input
                   required
@@ -242,7 +245,7 @@ export function CheckoutPage() {
           </div>
           <label className="flex w-full flex-col gap-2">
             <span className="text-[calc(12px*var(--fs-scale))] leading-[normal] font-bold text-black uppercase">
-              Delivery note · optional
+              {t("delivery.note")}
             </span>
             <textarea
               value={note}
@@ -253,48 +256,53 @@ export function CheckoutPage() {
         </div>
         <div className="flex w-full shrink-0 flex-col gap-6 lg:w-[400px]">
           <h2 className="font-[family-name:var(--font-instrument-serif)] text-[calc(32px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] lg:text-[calc(36px*var(--fs-scale))]">
-            Payment
+            {t("payment.title")}
           </h2>
           <div
             className="flex flex-col gap-3"
             role="radiogroup"
-            aria-label="Payment method"
+            aria-label={t("payment.label")}
           >
             <PaymentOption
-              name="Credit / Debit Card"
+              name={t("payment.card")}
               selected={paymentMethod === "card"}
               onSelect={() => setPaymentMethod("card")}
             />
             <PaymentOption
-              name="Cash on Delivery"
+              name={t("payment.cash")}
               selected={paymentMethod === "cash"}
               onSelect={() => setPaymentMethod("cash")}
             />
           </div>
           <h2 className="font-[family-name:var(--font-instrument-serif)] text-[calc(32px*var(--fs-scale))] leading-[normal] text-[#1a1a1a] lg:text-[calc(36px*var(--fs-scale))]">
-            Order Summary
+            {t("summary.title")}
           </h2>
           <div className="flex flex-col gap-5 rounded-lg bg-[#f4f0eb] p-6">
-            <SummaryRow label="Subtotal" value={formatCartAmount(total)} />
-            <SummaryRow label="Delivery" value={formatCartAmount(delivery)} />
+            <SummaryRow label={t("summary.subtotal")} value={formatCartAmount(total)} />
+            <SummaryRow label={t("summary.delivery")} value={formatCartAmount(delivery)} />
             <div className="h-px w-full bg-[#ebe6de]" />
             <div className="flex flex-col leading-[normal] font-bold text-[#1a1a1a]">
-              <p className="text-[calc(13px*var(--fs-scale))]">Total</p>
-              <p className="text-[calc(20px*var(--fs-scale))]">{formatCartAmount(orderTotal)}</p>
+              <p className="text-[calc(13px*var(--fs-scale))]">{t("summary.total")}</p>
+              <p
+                dir="ltr"
+                className="text-[calc(20px*var(--fs-scale))] [direction:ltr] [unicode-bidi:isolate]"
+              >
+                {formatCartAmount(orderTotal)}
+              </p>
             </div>
             <button
               type="submit"
               disabled={!canPlaceOrder || placed}
               className="w-full rounded bg-[#1a1a1a] py-4 text-[calc(13px*var(--fs-scale))] leading-[normal] font-bold text-white uppercase disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {placed ? "Order placed" : "Place order"}
+              {placed ? t("summary.orderPlaced") : t("summary.placeOrder")}
             </button>
             <p className="text-center text-[calc(10px*var(--fs-scale))] leading-[normal] font-normal text-[#605a54] uppercase">
-              Secure checkout · Visa · Mastercard · Amex
+              {t("summary.secure")}
             </p>
             {placed ? (
               <p className="text-center text-[calc(12px*var(--fs-scale))] leading-[normal] text-[#2f7a55]">
-                Your order has been placed.
+                {t("summary.confirmation")}
               </p>
             ) : null}
           </div>
@@ -355,7 +363,12 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col text-[calc(13px*var(--fs-scale))] leading-[normal]">
       <p className="font-normal text-[#605a54]">{label}</p>
-      <p className="font-bold text-[#1a1a1a]">{value}</p>
+      <p
+        dir="ltr"
+        className="font-bold text-[#1a1a1a] [direction:ltr] [unicode-bidi:isolate]"
+      >
+        {value}
+      </p>
     </div>
   );
 }

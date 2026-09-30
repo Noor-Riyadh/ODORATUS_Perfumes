@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useLayoutEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,10 +11,42 @@ type ScentStage = {
   productImage: string;
   headlineKey: "headline1" | "headline2" | "headline3" | "headline4";
   subtextKey: "subtext1" | "subtext2" | "subtext3" | "subtext4";
-  textPosition: string;
+  // Desktop-only (xl:) positioning classes, written out in full so
+  // Tailwind's static scanner can see and generate them — never build
+  // "xl:" + className via string concatenation, it won't be detected.
+  // Kept at xl: (1280px) rather than md:/lg: because the side-by-side
+  // overlay needs real room beside the bottle image; below 1280px
+  // (tablet and small-laptop widths, ~768-1024px) there isn't enough
+  // horizontal space for the corner-positioned text to clear the image
+  // without overlapping it, so those widths keep the mobile-stacked
+  // layout instead.
+  desktopPosition: string;
   altKey: "alt1" | "alt2" | "alt3" | "alt4";
   action?: boolean;
 };
+
+// Shared mobile position for every stage: a clear band below the
+// (shrunk, top-aligned) image, since below xl the bottle spans the
+// full viewport width and any per-stage corner position would overlap it.
+const MOBILE_TEXT_POSITION = "items-end justify-center text-center pb-10";
+
+// The last stage's desktop position, mirrored for Arabic (RTL): swaps
+// justify-end/pl-28 for justify-start/pr-28. Written literally (not via
+// .replace on the LTR string) for the same static-scanning reason above.
+// items-center centers this container on the same point as the image's
+// container, but bottle-spray-close-removebg-preview.png has ~30% empty
+// space above the nozzle and no empty space below (content runs flush to
+// the bottom edge), so the bottle's VISIBLE center sits ~12vh below the
+// box's geometric center at this stage's xl:h-[82vh] image height
+// (measured directly from the PNG's alpha channel: content spans
+// y=172-577 of 578px, vs the canvas's geometric center at y=289).
+// translate-y-[12vh] corrects for that so the text aligns with where the
+// bottle actually appears, not just the container midpoint. Applied here
+// (the non-animated wrapper), not on the inner text ref div, since GSAP
+// sets that div's own transform/y on every scroll tick and would silently
+// override a translate class placed there.
+const LAST_STAGE_DESKTOP_POSITION_RTL =
+  "xl:items-center xl:justify-start xl:pr-28 xl:translate-y-[12vh]";
 
 const stages: ScentStage[] = [
   {
@@ -22,7 +54,7 @@ const stages: ScentStage[] = [
       "/images/products/showcase/bottle-still-removebg-preview.png",
     headlineKey: "headline1",
     subtextKey: "subtext1",
-    textPosition: "items-start justify-center pt-20 text-center",
+    desktopPosition: "xl:items-start xl:justify-center xl:pt-20 xl:text-center",
     altKey: "alt1",
   },
   {
@@ -30,7 +62,7 @@ const stages: ScentStage[] = [
       "/images/products/showcase/bottle-motion-removebg-preview.png",
     headlineKey: "headline2",
     subtextKey: "subtext2",
-    textPosition: "items-end justify-end pb-28 pl-28",
+    desktopPosition: "xl:items-end xl:justify-end xl:pb-28 xl:pl-28",
     altKey: "alt2",
   },
   {
@@ -38,7 +70,7 @@ const stages: ScentStage[] = [
       "/images/products/showcase/bottle-spray-wide-removebg-preview.png",
     headlineKey: "headline3",
     subtextKey: "subtext3",
-    textPosition: "items-start justify-start pt-28 pl-28",
+    desktopPosition: "xl:items-start xl:justify-start xl:pt-28 xl:pl-28",
     altKey: "alt3",
   },
   {
@@ -46,7 +78,12 @@ const stages: ScentStage[] = [
       "/images/products/showcase/bottle-spray-close-removebg-preview.png",
     headlineKey: "headline4",
     subtextKey: "subtext4",
-    textPosition: "items-end justify-end pb-28 pl-28",
+    // items-center matches the image container's own centering, plus a
+    // measured +12vh correction — see LAST_STAGE_DESKTOP_POSITION_RTL above
+    // for why: this stage's bottle image has empty space at the top and
+    // none at the bottom, so its visible center sits below the box's
+    // geometric center.
+    desktopPosition: "xl:items-center xl:justify-end xl:pl-28 xl:translate-y-[12vh]",
     altKey: "alt4",
     action: true,
   },
@@ -54,6 +91,7 @@ const stages: ScentStage[] = [
 
 export function ScentStory() {
   const t = useTranslations("scentStory");
+  const locale = useLocale();
   const storyRef = useRef<HTMLElement>(null);
   const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const visualRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -217,7 +255,20 @@ export function ScentStory() {
       aria-label={t("ariaLabel")}
     >
       <div className="scent-story-stage relative min-h-screen h-screen w-full overflow-hidden bg-[#faf8f5]">
-        {stages.map((stage, index) => (
+        {stages.map((stage, index) => {
+          const isLastStage = index === stages.length - 1;
+          const rtlText = locale === "ar" && isLastStage;
+          const desktopPositionClasses = rtlText
+            ? LAST_STAGE_DESKTOP_POSITION_RTL
+            : stage.desktopPosition;
+          const textPosition = `${MOBILE_TEXT_POSITION} ${desktopPositionClasses}`;
+          const textDir = rtlText ? "rtl" : "ltr";
+          const textAlign = rtlText
+            ? "text-center xl:text-right"
+            : "text-center xl:text-left";
+          const directionClass = rtlText ? "[direction:rtl]" : "[direction:ltr]";
+
+          return (
           <div
             key={stage.headlineKey}
             ref={(element) => {
@@ -232,12 +283,12 @@ export function ScentStory() {
                   "linear-gradient(180deg, #faf8f5 0%, #f4f0eb 50%, #ebe6de 100%)",
               }}
             />
-            <div className="absolute inset-0 z-20 flex items-center justify-center">
+            <div className="absolute inset-0 z-20 flex items-start justify-center pt-10 xl:items-center xl:pt-0">
               <div
                 ref={(element) => {
                   visualRefs.current[index] = element;
                 }}
-                className="relative h-[82vh] w-full max-w-4xl origin-center"
+                className="relative h-[46vh] w-full max-w-4xl origin-center xl:h-[82vh]"
               >
                 <Image
                   ref={(element) => {
@@ -247,37 +298,37 @@ export function ScentStory() {
                   alt={t(stage.altKey)}
                   fill
                   priority={index === 0}
-                  sizes="(min-width: 1024px) 56rem, 100vw"
+                  sizes="(min-width: 1280px) 56rem, 100vw"
                   className="object-contain"
                 />
               </div>
             </div>
             <div
-              className={`absolute inset-0 z-30 flex ${stage.textPosition} p-16`}
+              className={`absolute inset-0 z-30 flex ${textPosition} p-6 xl:p-16`}
             >
               <div
                 ref={(element) => {
                   textRefs.current[index] = element;
                 }}
-                dir="ltr"
-                className="pointer-events-none max-w-[34rem] bg-[radial-gradient(ellipse_at_center,rgba(250,248,245,0.94)_0%,rgba(250,248,245,0.68)_48%,rgba(250,248,245,0)_78%)] px-12 py-10 [direction:ltr]"
+                dir={textDir}
+                className={`pointer-events-none max-w-[26rem] xl:max-w-[34rem] ${textAlign} bg-[radial-gradient(ellipse_at_center,rgba(250,248,245,0.94)_0%,rgba(250,248,245,0.68)_48%,rgba(250,248,245,0)_78%)] px-6 py-6 xl:px-12 xl:py-10 ${directionClass}`}
               >
                 <h1
-                  dir="ltr"
-                  className="text-left font-[family-name:var(--font-instrument-serif)] text-[clamp(5rem,10vw,10rem)] leading-[0.86] tracking-[-0.03em] text-[#1a1a1a] [direction:ltr]"
+                  dir={textDir}
+                  className={`${textAlign} font-[family-name:var(--font-instrument-serif)] text-[clamp(3rem,10vw,10rem)] leading-[0.86] tracking-[-0.03em] text-[#1a1a1a] ${directionClass}`}
                 >
                   {t(stage.headlineKey)}
                 </h1>
                 <p
-                  dir="ltr"
-                  className="mt-6 max-w-[28rem] text-left font-[family-name:var(--font-manrope)] text-[calc(18px*var(--fs-scale))] leading-[1.5] font-normal text-[#605a54] [direction:ltr]"
+                  dir={textDir}
+                  className={`mt-4 max-w-[28rem] ${textAlign} font-[family-name:var(--font-manrope)] text-[calc(16px*var(--fs-scale))] leading-[1.5] font-normal text-[#605a54] xl:mt-6 xl:text-[calc(18px*var(--fs-scale))] ${directionClass}`}
                 >
                   {t(stage.subtextKey)}
                 </p>
                 {stage.action ? (
                   <Link
                     href="/products"
-                    className="pointer-events-auto mt-8 inline-flex bg-[#1a1a1a] px-7 py-4 font-[family-name:var(--font-manrope)] text-[calc(12px*var(--fs-scale))] font-bold tracking-[0.12em] text-[#faf8f5] uppercase transition-colors hover:bg-[#c5a880]"
+                    className="pointer-events-auto mt-6 inline-flex bg-[#1a1a1a] px-6 py-3 font-[family-name:var(--font-manrope)] text-[calc(12px*var(--fs-scale))] font-bold tracking-[0.12em] text-[#faf8f5] uppercase transition-colors hover:bg-[#c5a880] xl:mt-8 xl:px-7 xl:py-4"
                   >
                     {t("shopButton")}
                   </Link>
@@ -285,7 +336,8 @@ export function ScentStory() {
               </div>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

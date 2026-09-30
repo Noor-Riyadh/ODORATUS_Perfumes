@@ -305,5 +305,40 @@
     "toast": {
       "viewCart": "View cart"
     }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subtitle": "Complete your delivery details to place your order.",
+    "breadcrumb": {
+      "home": "Home",
+      "cart": "Cart",
+      "checkout": "Checkout"
+    },
+    "delivery": {
+      "title": "Delivery details",
+      "recipientName": "Recipient name",
+      "phoneNumber": "Phone number",
+      "phoneVerified": "Phone number verified",
+      "address": "Delivery address",
+      "city": "City",
+      "postalCode": "Postal code",
+      "note": "Delivery note · optional"
+    },
+    "payment": {
+      "title": "Payment",
+      "label": "Payment method",
+      "card": "Credit / Debit Card",
+      "cash": "Cash on Delivery"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "total": "Total",
+      "placeOrder": "Place order",
+      "orderPlaced": "Order placed",
+      "secure": "Secure checkout · Visa · Mastercard · Amex",
+      "confirmation": "Your order has been placed."
+    }
   }
 }

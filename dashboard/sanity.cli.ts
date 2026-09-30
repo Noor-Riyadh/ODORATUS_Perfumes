@@ -13,10 +13,7 @@ export default defineCliConfig({
     overloadClientMethods: true,
   },
   deployment: {
-    /**
-     * Enable auto-updates for studios.
-     * Learn more at https://www.sanity.io/docs/studio/latest-version-of-sanity#k47faf43faf56
-     */
+    appId: 'g8a6b0bohg03tqcl5xexe20z',
     autoUpdates: true,
   },
 })

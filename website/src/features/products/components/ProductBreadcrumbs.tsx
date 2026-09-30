@@ -1,10 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { productPaths } from "@/features/products/paths";
 
 export function ProductBreadcrumbs() {
   const t = useTranslations("products");
+  const locale = useLocale();
+  const isArabic = locale === "ar";
+  const chevronClassName = isArabic ? "scale-x-[-1]" : undefined;
 
   return (
     <nav
@@ -18,7 +21,13 @@ export function ProductBreadcrumbs() {
         >
           {t("breadcrumb.home")}
         </Link>
-        <img src="/icons/chevron-right.svg" alt="" width={10} height={10} />
+        <img
+          src="/icons/chevron-right.svg"
+          alt=""
+          width={10}
+          height={10}
+          className={chevronClassName}
+        />
       </span>
       <span className="flex items-center gap-2">
         <Link
@@ -27,7 +36,13 @@ export function ProductBreadcrumbs() {
         >
           {t("breadcrumb.shop")}
         </Link>
-        <img src="/icons/chevron-right.svg" alt="" width={10} height={10} />
+        <img
+          src="/icons/chevron-right.svg"
+          alt=""
+          width={10}
+          height={10}
+          className={chevronClassName}
+        />
       </span>
       <span className="text-[calc(12px*var(--fs-scale))] font-semibold whitespace-nowrap text-[#1a1a1a]">
         {t("title")}

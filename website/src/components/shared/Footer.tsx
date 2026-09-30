@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 
 const SOCIALS = [
@@ -15,6 +15,7 @@ const PAYMENT_METHODS = ["visa", "mastercard", "amex"] as const;
 
 export function Footer() {
   const t = useTranslations("footer");
+  const locale = useLocale();
   const columns = [
     {
       title: t("collections.title"),
@@ -58,9 +59,8 @@ export function Footer() {
               ODORATUS
             </Link>
             <p
-              dir="ltr"
-              style={{ unicodeBidi: "isolate" }}
-              className="text-[calc(14px*var(--fs-scale))] leading-[1.6] font-normal text-[#f2ede4] opacity-80 [direction:ltr] [unicode-bidi:isolate]"
+              dir={locale === "ar" ? "rtl" : "ltr"}
+              className={`text-[calc(14px*var(--fs-scale))] leading-[1.6] font-normal text-[#f2ede4] opacity-80 ${locale === "ar" ? "text-right" : "text-left"}`}
             >
               {t("description")}
             </p>

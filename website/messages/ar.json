@@ -305,5 +305,40 @@
     "toast": {
       "viewCart": "عرض السلة"
     }
+  },
+  "checkout": {
+    "title": "الدفع",
+    "subtitle": "أكمل بيانات التوصيل لإتمام طلبك.",
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "cart": "السلة",
+      "checkout": "الدفع"
+    },
+    "delivery": {
+      "title": "بيانات التوصيل",
+      "recipientName": "اسم المستلم",
+      "phoneNumber": "رقم الهاتف",
+      "phoneVerified": "تم التحقق من رقم الهاتف",
+      "address": "عنوان التوصيل",
+      "city": "المدينة",
+      "postalCode": "الرمز البريدي",
+      "note": "ملاحظة التوصيل · اختياري"
+    },
+    "payment": {
+      "title": "الدفع",
+      "label": "طريقة الدفع",
+      "card": "بطاقة ائتمان / خصم",
+      "cash": "الدفع عند الاستلام"
+    },
+    "summary": {
+      "title": "ملخص الطلب",
+      "subtotal": "المجموع الجزئي",
+      "delivery": "التوصيل",
+      "total": "الإجمالي",
+      "placeOrder": "إتمام الطلب",
+      "orderPlaced": "تم إتمام الطلب",
+      "secure": "دفع آمن · Visa · Mastercard · Amex",
+      "confirmation": "تم إتمام طلبك بنجاح."
+    }
   }
 }

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useMemo } from "react";
 import { useProducts } from "@/features/products/hooks/useProducts";
 import { productPaths } from "@/features/products/paths";
@@ -47,6 +47,8 @@ function categoryCards(products: Product[]): CategoryCard[] {
 
 export function CategoriesPage() {
   const t = useTranslations("categories");
+  const locale = useLocale();
+  const isArabic = locale === "ar";
   const productsQuery = useProducts({ page: 1, pageSize: 50 });
   const categories = useMemo(
     () => categoryCards(productsQuery.data?.items ?? []),
@@ -116,8 +118,14 @@ export function CategoriesPage() {
                       {t("count", { count: category.productCount })}
                     </p>
                   </div>
-                  <span className="text-[calc(22px*var(--fs-scale))] text-[#c5a880] transition-transform duration-300 group-hover:translate-x-1">
-                    →
+                  <span
+                    className={`text-[calc(22px*var(--fs-scale))] text-[#c5a880] transition-transform duration-300 ${
+                      isArabic
+                        ? "group-hover:-translate-x-1"
+                        : "group-hover:translate-x-1"
+                    }`}
+                  >
+                    {isArabic ? "←" : "→"}
                   </span>
                 </div>
               </Link>

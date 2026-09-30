@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { memo, useEffect, useMemo, useState, type ReactNode } from "react";
 import { ProductCard } from "@/features/products/components/ProductCard";
 import { ProductDetails } from "@/features/products/components/ProductDetails";
@@ -67,6 +67,9 @@ function volumeGroups(product: Product, selectVolumeLabel: string): VolumeGroup[
 
 function ProductBreadcrumb({ name }: { name: string }) {
   const t = useTranslations("productDetail");
+  const locale = useLocale();
+  const isArabic = locale === "ar";
+  const chevronClassName = isArabic ? "scale-x-[-1]" : undefined;
   const crumbs = [
     { label: t("breadcrumb.home"), href: "/" },
     { label: t("breadcrumb.shop"), href: productPaths.list },
@@ -86,7 +89,13 @@ function ProductBreadcrumb({ name }: { name: string }) {
           >
             {crumb.label}
           </Link>
-          <img src="/icons/chevron-right.svg" alt="" width={10} height={10} />
+          <img
+            src="/icons/chevron-right.svg"
+            alt=""
+            width={10}
+            height={10}
+            className={chevronClassName}
+          />
         </span>
       ))}
       <span
@@ -123,8 +132,8 @@ function GiftWrapSwitch({
     >
       <span
         className={cn(
-          "absolute top-0.5 size-5 rounded-full bg-white",
-          enabled ? "left-[22px]" : "left-0.5",
+          "absolute top-0.5 size-5 rounded-full bg-white transition-all duration-200",
+          enabled ? "end-0.5" : "start-0.5",
         )}
       />
     </button>
